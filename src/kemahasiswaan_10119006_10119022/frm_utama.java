@@ -101,6 +101,11 @@ public class frm_utama extends javax.swing.JFrame {
         jButton1.setFocusable(false);
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jToolBar1.add(jButton1);
         jToolBar1.add(jSeparator4);
 
@@ -183,7 +188,7 @@ public class frm_utama extends javax.swing.JFrame {
         frm_mhs mhs = new frm_mhs();
         mhs.setVisible(true);
         
-        //menghilangkan form utama
+        //menghilangkan frm utama
         this.setVisible(false);
     }//GEN-LAST:event_menu_form_mahasiswaActionPerformed
 
@@ -192,7 +197,7 @@ public class frm_utama extends javax.swing.JFrame {
         frm_matkul mk = new frm_matkul();
         mk.setVisible(true);
         
-        //menghilangkan form utama
+        //menghilangkan frm utama
         this.setVisible(false);
     }//GEN-LAST:event_menu_matkulActionPerformed
 
@@ -201,9 +206,18 @@ public class frm_utama extends javax.swing.JFrame {
         frm_nilai nl = new frm_nilai();
         nl.setVisible(true);
         
-        //menghilangkan form utama
+        //menghilangkan frm utama
         this.setVisible(false);
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        frm_nilai_akhir na = new frm_nilai_akhir();
+        na.setVisible(true);
+        
+        //menghilangkan frm utama
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

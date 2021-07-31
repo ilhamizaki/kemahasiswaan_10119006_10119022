@@ -4,11 +4,9 @@
  * and open the template in the editor.
  */
 package kemahasiswaan_10119006_10119022;
-
 //Fungsi import yang digunakan untuk SQL
 import java.sql.*;
 import java.text.ParseException;
-import java.time.Year;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,241 +16,17 @@ import javax.swing.JOptionPane;
  *
  * @author Ilham zaki
  */
-public class frm_nilai extends javax.swing.JFrame {
-    // deklarasi variable
+public class frm_nilai_akhir extends javax.swing.JFrame {
     koneksi dbsetting;
     String driver,database,user,pass;
     Object tabel;
-    double jumlah_pertemuan, tugas1, tugas2, tugas3, uts, uas;
-    double n_absen, n_tugas, n_uts, n_uas, n_akhir;
-    char index;
-    String keterangan;
-    
     /**
-     * Creates new form frm_nilai
+     * Creates new form frm_nilai_akhir
      */
-    public frm_nilai() {
+    public frm_nilai_akhir() {
         initComponents();
-        
-        dbsetting = new koneksi();
-        driver = dbsetting.SettingPanel("DBDriver");
-        database = dbsetting.SettingPanel("DBDatabase");
-        user = dbsetting.SettingPanel("DBUsername");
-        pass = dbsetting.SettingPanel("DBPassword");
-        tabel_nilai.setModel(tableModel);
-        settableload();
-        aktif_btn_default();
-        nonaktif_teks();
     }
-    
-    // Start handling table
-    private javax.swing.table.DefaultTableModel tableModel= getDefaultTabelModel();
-    private javax.swing.table.DefaultTableModel getDefaultTabelModel(){
-        //membuat judul header
-        return new javax.swing.table.DefaultTableModel(
-            new Object[][] {},
-            new String [] {"Nama","Nama M.K","Absensi","Tgs 1","Tgs 2","Tgs 3", "UTS",""
-                    + "UAS","Nilai Absen","Nilai Tugas","Nilai UTS","Nilai UAS",""
-                            + "Nilai Akhir","Index","Keterangan"} // 15 field
-        )
-        {
-         // Disable Edit Tabel
-         boolean[] canEdit = new boolean[]
-            {
-                false, false, false, false, false, false, false, false, false
-                , false, false, false, false, false, false //15 field
-            };
-            
-            public boolean isCellEditable(int rowIndex, int columnIndex)
-            {
-                return canEdit[columnIndex];
-            }
-        };
-    }
-    // END handling table
-    
-    // START Method for handling UI
-    public void membersihkan_teks(){
-        combo_nama.setSelectedIndex(0);
-        combo_mk.setSelectedIndex(0);
-        txt_nim.setText("");
-        txt_kd_mk.setText("");
-        txt_kehadiran.setText("");
-        txt_tugas1.setText("");
-        txt_tugas2.setText("");
-        txt_tugas3.setText("");
-        txt_uts.setText("");
-        txt_uas.setText("");
-    }
-    public void nonaktif_teks(){
-        combo_nama.setEnabled(false);
-        combo_mk.setEnabled(false);
-        txt_nim.setEditable(false);
-        txt_kd_mk.setEditable(false);
-        txt_kehadiran.setEnabled(false);
-        txt_tugas1.setEnabled(false);
-        txt_tugas2.setEnabled(false);
-        txt_tugas3.setEnabled(false);
-        txt_uts.setEnabled(false);
-        txt_uas.setEnabled(false);
-        txt_angkatan.setEnabled(false);
-    }
-    public void aktif_teks(){
-        combo_nama.setEnabled(true);
-        combo_mk.setEnabled(true);
-        txt_kehadiran.setEnabled(true);
-        txt_tugas1.setEnabled(true);
-        txt_tugas2.setEnabled(true);
-        txt_tugas3.setEnabled(true);
-        txt_uts.setEnabled(true);
-        txt_uas.setEnabled(true);
-    }
-    public void aktif_btn_default(){
-        btn_tambah.setEnabled(true);
-        btn_simpan.setEnabled(false);
-        btn_ubah.setEnabled(false);
-        btn_hapus.setEnabled(false);
-        btn_batal.setEnabled(false);
-        btn_keluar.setEnabled(true);
-    }
-    // END Method for handling UI
-    
-    public void hitung_nilai() {
-        // Nilai absen
-        jumlah_pertemuan = Double.valueOf(txt_kehadiran.getText());
-        n_absen = (((jumlah_pertemuan/14)*100*5)/100);
 
-        // Nilai Tugas
-        tugas1 = Double.valueOf(txt_tugas1.getText());
-        tugas2 = Double.valueOf(txt_tugas2.getText());
-        tugas3 = Double.valueOf(txt_tugas3.getText());
-        n_tugas = (((tugas1+tugas2+tugas3)/3)*25/100);
-
-        // Nilai UTS
-        uts = Double.valueOf(txt_uts.getText());
-        n_uts = uts*0.3;
-
-        // Nilai Uas
-        uas = Double.valueOf(txt_uas.getText());
-        n_uas = uas*0.4;
-
-        n_akhir = n_absen + n_tugas + n_uts + n_uas;  
-        
-        // START get indeks dan keterangan
-        if (n_akhir >= 80 && n_akhir <=100) {
-            index = 'A';
-            keterangan = "Lulus";
-        } else if(n_akhir >= 68) {
-            index = 'B';
-            keterangan = "Lulus";
-        } else if(n_akhir >= 56) {
-            index = 'C';
-            keterangan = "Lulus";
-        } else if(n_akhir >= 45) {
-            index = 'D';
-            keterangan = "Tidak Lulus";
-        } else {
-            index = 'E';
-            keterangan = "Tidak Lulus";
-        }
-        // END get indeks dan keterangan
-        
-        if (jumlah_pertemuan < 11) {
-            keterangan = "Tidak Lulus";
-        }
-    }
-    
-    // Start handling show all data in tabel_mahasiswa
-    String data[] = new String[15];
-    private void settableload(){
-        String stat = "";
-        try{
-            Class.forName(driver);
-            Connection kon = DriverManager.getConnection(database,user,pass);
-            Statement stt=kon.createStatement();
-            String SQL = "SELECT nama, nama_mk, kehadiran, tugas1, tugas2, tugas3, "
-                    + "uts, uas, nilai_absen, nilai_tugas, nilai_uts, nilai_uas, "
-                    + "nilai_akhir,t_nilai.index, ket\n" +
-                    "FROM t_nilai\n" +
-                    "JOIN t_mahasiswa ON t_mahasiswa.nim = t_nilai.nim\n" +
-                    "JOIN t_mata_kuliah ON t_mata_kuliah.kd_mk = t_nilai.kd_mk";
-            ResultSet res = stt.executeQuery(SQL);
-            while(res.next()){
-                data[0] = res.getString(1);
-                data[1] = res.getString(2);
-                data[2] = res.getString(3);
-                data[3] = res.getString(4);
-                data[4] = res.getString(5);
-                data[5] = res.getString(6);
-                data[6] = res.getString(7);
-                data[7] = res.getString(8);
-                data[8] = res.getString(9);
-                data[9] = res.getString(10);
-                data[10] = res.getString(11);
-                data[11] = res.getString(12);
-                data[12] = res.getString(13);
-                data[13] = res.getString(14);
-                data[14] = res.getString(15);
-                tableModel.addRow(data);
-            }
-            
-            //Get nama for combobox
-            String SQL_nama = "SELECT * FROM t_mahasiswa";
-            ResultSet res_nama = stt.executeQuery(SQL_nama);
-            while (res_nama.next()) {
-                //Set Value Combobox
-                String nama = res_nama.getString("nama");
-                combo_nama.addItem(nama);
-            }
-            
-            //Get nama_mk for combobox
-            String SQL_nama_mk = "SELECT * FROM t_mata_kuliah";
-            ResultSet res_nama_mk = stt.executeQuery(SQL_nama_mk);
-            while (res_nama_mk.next()) {
-                //Set Value Combobox
-                String nama_mk = res_nama_mk.getString("nama_mk");
-                combo_mk.addItem(nama_mk);
-            }
-            
-            res.close();
-            res_nama.close();
-            res_nama_mk.close();
-            stt.close();
-            kon.close();
-            
-            
-        }catch(Exception ex){
-            System.err.println(ex.getMessage());
-            JOptionPane.showMessageDialog(null, ex.getMessage(),"error",JOptionPane.INFORMATION_MESSAGE);
-            System.exit(0);
-        }
-    }
-    
-    // START Handling Update
-    int row =0;
-    public void tampil_field() throws ParseException{
-        row = tabel_nilai.getSelectedRow();
-        // Handling set input combo from table value
-        String nama = tableModel.getValueAt(row, 0).toString();
-        String mk = tableModel.getValueAt(row, 1).toString(); 
-        combo_nama.setSelectedItem(nama);
-        combo_mk.setSelectedItem(mk);
-        txt_kehadiran.setText(tableModel.getValueAt(row, 2).toString());
-        txt_tugas1.setText(tableModel.getValueAt(row, 3).toString());
-        txt_tugas2.setText(tableModel.getValueAt(row, 4).toString());
-        txt_tugas3.setText(tableModel.getValueAt(row, 5).toString());
-        txt_uts.setText(tableModel.getValueAt(row, 6).toString());
-        txt_uas.setText(tableModel.getValueAt(row, 7).toString());
-        txt_angkatan.setYear(Year.now().getValue());
-        
-        btn_ubah.setEnabled(true);
-        btn_hapus.setEnabled(true);
-        btn_batal.setEnabled(true);
-        
-        aktif_teks();
-    }
-    // END Handling Update
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -298,14 +72,9 @@ public class frm_nilai extends javax.swing.JFrame {
         txt_kd_mk = new javax.swing.JTextField();
         txt_uts = new javax.swing.JTextField();
         txt_uas = new javax.swing.JTextField();
-        txt_angkatan = new com.toedter.calendar.JYearChooser();
+        txt_angkatan = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosed(java.awt.event.WindowEvent evt) {
-                formWindowClosed(evt);
-            }
-        });
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 102));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -548,17 +317,13 @@ public class frm_nilai extends javax.swing.JFrame {
                             .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(txt_uts, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
-                                        .addComponent(txt_uas))
-                                    .addComponent(combo_mk, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txt_kd_mk))
-                                .addGap(350, 350, 350))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txt_angkatan, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txt_uts, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+                                .addComponent(txt_uas)
+                                .addComponent(txt_angkatan, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(combo_mk, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_kd_mk))
+                        .addGap(350, 350, 350)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -582,16 +347,16 @@ public class frm_nilai extends javax.swing.JFrame {
                                 .addGap(44, 44, 44)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel14)
-                                    .addComponent(txt_uas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(txt_uas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel15)
+                                    .addComponent(txt_angkatan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel13)
-                                    .addComponent(txt_uts, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel15)
-                            .addComponent(txt_angkatan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(txt_uts, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
@@ -616,7 +381,7 @@ public class frm_nilai extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel12)
                             .addComponent(txt_tugas3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -633,189 +398,178 @@ public class frm_nilai extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void tabel_nilaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabel_nilaiMouseClicked
+//        if(evt.getClickCount()==1){
+//            btn_tambah.setEnabled(false);
+//            btn_simpan.setEnabled(false);
+//
+//            try {
+//                tampil_field();
+//            } catch (ParseException ex) {
+//                Logger.getLogger(frm_mhs.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        }
+    }//GEN-LAST:event_tabel_nilaiMouseClicked
+
     private void btn_tambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tambahActionPerformed
-        // TODO add your handling code here:
-        membersihkan_teks();
-        combo_nama.requestFocus();
-        btn_tambah.setEnabled(false);
-        btn_simpan.setEnabled(true);
-        btn_batal.setEnabled(true);
-        txt_angkatan.setEnabled(true);
-        aktif_teks();
+//        // TODO add your handling code here:
+//        membersihkan_teks();
+//        combo_nama.requestFocus();
+//        btn_tambah.setEnabled(false);
+//        btn_simpan.setEnabled(true);
+//        btn_batal.setEnabled(true);
+//        aktif_teks();
     }//GEN-LAST:event_btn_tambahActionPerformed
 
     private void btn_ubahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ubahActionPerformed
         // TODO add your handling code here:
-        // START Validasi Empty Input
-        if(combo_nama.getSelectedIndex() == 0 || combo_mk.getSelectedIndex() == 0 ||
-            txt_kehadiran.getText().isEmpty() || txt_tugas1.getText().isEmpty() ||
-            txt_tugas2.getText().isEmpty() || txt_tugas3.getText().isEmpty() ||
-            txt_uts.getText().isEmpty() || txt_uas.getText().isEmpty() ){
-            JOptionPane.showMessageDialog(null, "Data tidak boleh kosong, Silahkan lengkapi");
-            if(combo_nama.getSelectedIndex() == 0) combo_nama.requestFocus();
-            if(combo_mk.getSelectedIndex() == 0) combo_mk.requestFocus();
-            if(txt_kehadiran.getText().isEmpty()) txt_kehadiran.requestFocus();
-            if(txt_tugas1.getText().isEmpty()) txt_tugas1.requestFocus();
-            if(txt_tugas2.getText().isEmpty()) txt_tugas2.requestFocus();
-            if(txt_tugas3.getText().isEmpty()) txt_tugas3.requestFocus();
-            if(txt_uts.getText().isEmpty()) txt_uts.requestFocus();
-            if(txt_uas.getText().isEmpty()) txt_uas.requestFocus();
-        // END Validasi Empty Input
-        }else{
-            try{
-                hitung_nilai();
-                Class.forName(driver);
-                Connection kon = DriverManager.getConnection(database, user, pass);
-                Statement stt = kon.createStatement();
-                String SQL = "UPDATE t_nilai "
-                        + "SET "
-                        + "nim = '" + txt_nim.getText() + "', "
-                        + "kd_mk = '" + txt_kd_mk.getText() + "', "
-                        + "kehadiran = '" + txt_kehadiran.getText() + "', "
-                        + "tugas1 = '" + txt_tugas1.getText() + "', "
-                        + "tugas2 = '" + txt_tugas2.getText() + "', "
-                        + "tugas3 = '" + txt_tugas3.getText() + "', "
-                        + "uts = '" + txt_uts.getText() + "', "
-                        + "uas = '" + txt_uas.getText() + "', "
-                        + "nilai_absen = '" + String.format("%.2f", n_absen) + "', "
-                        + "nilai_tugas = '" + String.format("%.2f", n_tugas) + "', "
-                        + "nilai_uts = '" + String.format("%.2f", n_uts) + "', "
-                        + "nilai_uas = '" + String.format("%.2f", n_uas) + "', "
-                        + "nilai_akhir = '" + String.format("%.2f", n_akhir) + "', "
-                        + "t_nilai.index = '" + index + "', "
-                        + "ket = '" + keterangan + "' "
-                        + "WHERE nim = '" + txt_nim.getText() + "'";
-                stt.executeUpdate(SQL);
-                data[0] = combo_nama.getSelectedItem().toString();
-                data[1] = combo_mk.getSelectedItem().toString();
-                data[2] = txt_kehadiran.getText();
-                data[3] = txt_tugas1.getText();
-                data[4] = txt_tugas2.getText();
-                data[5] = txt_tugas3.getText();
-                data[6] = txt_uts.getText();
-                data[7] = txt_uas.getText();
-                data[8] = String.format("%.2f", n_absen);
-                data[9] = String.format("%.2f", n_tugas);
-                data[10] = String.format("%.2f", n_uts);
-                data[11] = String.format("%.2f", n_uas);
-                data[12] = String.format("%.2f", n_akhir);
-                data[13] = Character.toString(index);;
-                data[14] = keterangan;
-                tableModel.removeRow(row);
-                tableModel.insertRow(row, data);
-                stt.close();
-                kon.close();
-                membersihkan_teks();
-                nonaktif_teks();
-                aktif_btn_default();
-            }catch(Exception ex){    
-                System.err.println(ex.getMessage());
-            }
-        }
+        //        if(combo_nim.getSelectedIndex() == 0 || combo_kode_mk.getSelectedIndex() == 0
+            //            || txt_nilai.getText().isEmpty()){
+            //            JOptionPane.showMessageDialog(null, "data tidak boleh kosong, silahkan lengkapi");
+            //            if(combo_nim.getSelectedIndex() == 0) combo_nim.requestFocus();
+            //            if(combo_kode_mk.getSelectedIndex() == 0) combo_kode_mk.requestFocus();
+            //            if(txt_nilai.getText().isEmpty()) txt_nilai.requestFocus();
+            //        }else{
+//            try{
+//                hitung_nilai();
+//                Class.forName(driver);
+//                Connection kon = DriverManager.getConnection(database, user, pass);
+//                Statement stt = kon.createStatement();
+//                String SQL = "UPDATE t_nilai "
+//                + "SET "
+//                //                        + "nim = '" + combo_nim.getSelectedItem() + "', "
+//                //                        + "kd_mk = '" + combo_kode_mk.getSelectedItem() + "', "
+//                + "kehadiran = '" + txt_kehadiran.getText() + "', "
+//                + "tugas1 = '" + txt_tugas1.getText() + "', "
+//                + "tugas2 = '" + txt_tugas2.getText() + "', "
+//                + "tugas3 = '" + txt_tugas3.getText() + "', "
+//                + "uts = '" + txt_uts.getText() + "', "
+//                + "uas = '" + txt_uas.getText() + "', "
+//                + "nilai_absen = '" + n_absen + "', "
+//                + "nilai_tugas = '" + n_tugas + "', "
+//                + "nilai_uts = '" + n_uts + "', "
+//                + "nilai_uas = '" + n_uas + "', "
+//                + "nilai_akhir = '" + n_akhir + "', "
+//                + "t_nilai.index = '" + index + "', "
+//                + "ket = '" + keterangan + "' "
+//                + "WHERE nim = '" + tableModel.getValueAt(row, 0).toString() + "'"; //bermasalah karena tidak berelasi dengan t_mahasiswa
+//                stt.executeUpdate(SQL);
+//                //                data[0] = combo_nim.getSelectedItem().toString();
+//                //                data[1] = combo_kode_mk.getSelectedItem().toString();
+//                data[2] = txt_kehadiran.getText();
+//                data[3] = txt_tugas1.getText();
+//                data[4] = txt_tugas2.getText();
+//                data[5] = txt_tugas3.getText();
+//                data[6] = txt_uts.getText();
+//                data[7] = txt_uas.getText();
+//                data[8] = String.format("%.2f", n_absen);
+//                data[9] = String.format("%.2f", n_tugas);
+//                data[10] = String.format("%.2f", n_uts);
+//                data[11] = String.format("%.2f", n_uas);
+//                data[12] = String.format("%.2f", n_akhir);
+//                data[13] = Character.toString(index);;
+//                data[14] = keterangan;
+//                tableModel.removeRow(row);
+//                tableModel.insertRow(row, data);
+//                stt.close();
+//                kon.close();
+//                membersihkan_teks();
+//                nonaktif_teks();
+//                aktif_btn_default();
+//            }catch(Exception ex){
+//                System.err.println(ex.getMessage());
+//            }
+            //        }
     }//GEN-LAST:event_btn_ubahActionPerformed
 
     private void btn_hapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_hapusActionPerformed
         // TODO add your handling code here:
-        try{
-            Class.forName(driver);
-            Connection kon = DriverManager.getConnection(database, user, pass);
-            Statement stt = kon.createStatement();
-            String SQL = "DELETE FROM t_nilai WHERE "
-                        + "nim='"+txt_nim.getText()+"'";
-            stt.executeUpdate(SQL);
-            tableModel.removeRow(row);
-            stt.close();
-            kon.close();
-            membersihkan_teks();
-            nonaktif_teks();
-            aktif_btn_default();
-            
-        }catch(Exception ex){    
-            System.err.println(ex.getMessage());
-        }
+        //        try{
+            //            Class.forName(driver);
+            //            Connection kon = DriverManager.getConnection(database, user, pass);
+            //            Statement stt = kon.createStatement();
+            //            String SQL = "DELETE FROM t_nilai WHERE "
+            //                        + "nim='"+tableModel.getValueAt(row, 0).toString()+"'";
+            //            stt.executeUpdate(SQL);
+            //            tableModel.removeRow(row);
+            //            stt.close();
+            //            kon.close();
+            //            membersihkan_teks();
+            //            nonaktif_teks();
+            //            aktif_btn_default();
+            //
+            //        }catch(Exception ex){
+            //            System.err.println(ex.getMessage());
+            //        }
     }//GEN-LAST:event_btn_hapusActionPerformed
 
     private void btn_simpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_simpanActionPerformed
         // TODO add your handling code here:
-        String data[]=new String[15];
-        
-        // START Validasi Empty Input
-        if(combo_nama.getSelectedIndex() == 0 || combo_mk.getSelectedIndex() == 0 ||
-            txt_kehadiran.getText().isEmpty() || txt_tugas1.getText().isEmpty() ||
-            txt_tugas2.getText().isEmpty() || txt_tugas3.getText().isEmpty() ||
-            txt_uts.getText().isEmpty() || txt_uas.getText().isEmpty() ){
-            JOptionPane.showMessageDialog(null, "Data tidak boleh kosong, Silahkan lengkapi");
-            if(combo_nama.getSelectedIndex() == 0) combo_nama.requestFocus();
-            if(combo_mk.getSelectedIndex() == 0) combo_mk.requestFocus();
-            if(txt_kehadiran.getText().isEmpty()) txt_kehadiran.requestFocus();
-            if(txt_tugas1.getText().isEmpty()) txt_tugas1.requestFocus();
-            if(txt_tugas2.getText().isEmpty()) txt_tugas2.requestFocus();
-            if(txt_tugas3.getText().isEmpty()) txt_tugas3.requestFocus();
-            if(txt_uts.getText().isEmpty()) txt_uts.requestFocus();
-            if(txt_uas.getText().isEmpty()) txt_uas.requestFocus();
-        // END Validasi Empty Input
-        }else{
-            try{
-                hitung_nilai();
-                Class.forName(driver);
-                Connection kon = DriverManager.getConnection(database,user,pass);
-                Statement stt = kon.createStatement();
-                String SQL = "INSERT INTO t_nilai(nim, kd_mk, kehadiran, tugas1, tugas2, tugas3, "
-                        + "uts, uas, nilai_absen, nilai_tugas, nilai_uts, nilai_uas, "
-                        + "nilai_akhir,t_nilai.index, ket, angkatan)\n" 
-                        + "VALUES "
-                        + "( '"+txt_nim.getText()+"',"
-                        + " '"+txt_kd_mk.getText()+"',"
-                        + " '"+txt_kehadiran.getText()+"',"
-                        + " '"+txt_tugas1.getText()+"',"
-                        + " '"+txt_tugas2.getText()+"',"
-                        + " '"+txt_tugas3.getText()+"',"
-                        + " '"+txt_uts.getText()+"',"
-                        + " '"+txt_uas.getText()+"',"
-                        + " '"+String.format("%.2f", n_absen)+"',"
-                        + " '"+String.format("%.2f", n_tugas)+"',"
-                        + " '"+String.format("%.2f", n_uts)+"',"
-                        + " '"+String.format("%.2f", n_uas)+"',"
-                        + " '"+String.format("%.2f", n_akhir)+"',"
-                        + " '"+index+"',"
-                        + " '"+keterangan+"',"
-                        + " '"+txt_angkatan.getYear()+"' )";
-                stt.executeUpdate(SQL);
-                data[0] = combo_nama.getSelectedItem().toString();
-                data[1] = combo_mk.getSelectedItem().toString();
-                data[2] = txt_kehadiran.getText();
-                data[3] = txt_tugas1.getText();
-                data[4] = txt_tugas2.getText();
-                data[5] = txt_tugas3.getText();
-                data[6] = txt_uts.getText();
-                data[7] = txt_uas.getText();
-                data[8] = String.format("%.2f", n_absen);
-                data[9] = String.format("%.2f", n_tugas);
-                data[10] = String.format("%.2f", n_uts);
-                data[11] = String.format("%.2f", n_uas);
-                data[12] = String.format("%.2f", n_akhir);
-                data[13] = Character.toString(index);;
-                data[14] = keterangan;
-                tableModel.insertRow(0, data);
-                stt.close();
-                kon.close();
-                membersihkan_teks();
-                nonaktif_teks();
-                aktif_btn_default();
-            }catch(Exception ex){    
-                JOptionPane.showMessageDialog(null, 
-                        ex.getMessage(),"error",
-                        JOptionPane.INFORMATION_MESSAGE
-                );
-            }
-        }
+//        String data[]=new String[15];
+//        if(combo_nama.getSelectedIndex() == 0){
+//            JOptionPane.showMessageDialog(null, "data tidak boleh kosong, silahkan lengkapi");
+//            //            if(combo_nim.getSelectedIndex() == 0) combo_nim.requestFocus();
+//            //            if(combo_kode_mk.getSelectedIndex() == 0) combo_kode_mk.requestFocus();
+//            //            if(txt_nilai.getText().isEmpty()) txt_nilai.requestFocus();
+//        }else{
+//            try{
+//                hitung_nilai();
+//                Class.forName(driver);
+//                Connection kon = DriverManager.getConnection(database,user,pass);
+//                Statement stt = kon.createStatement();
+//                String SQL = "INSERT INTO t_nilai(kehadiran, tugas1, tugas2, tugas3, "
+//                + "uts, uas, nilai_absen, nilai_tugas, nilai_uts, nilai_uas, "
+//                + "nilai_akhir,t_nilai.index, ket)\n"
+//                + "VALUES "
+//                + "( '"+txt_kehadiran.getText()+"',"
+//                + " '"+txt_tugas1.getText()+"',"
+//                + " '"+txt_tugas2.getText()+"',"
+//                + " '"+txt_tugas3.getText()+"',"
+//                + " '"+txt_uts.getText()+"',"
+//                + " '"+txt_uas.getText()+"',"
+//                + " '"+String.format("%.2f", n_absen)+"',"
+//                + " '"+String.format("%.2f", n_tugas)+"',"
+//                + " '"+String.format("%.2f", n_uts)+"',"
+//                + " '"+String.format("%.2f", n_uas)+"',"
+//                + " '"+String.format("%.2f", n_akhir)+"',"
+//                + " '"+index+"',"
+//                + " '"+keterangan+"' )";
+//                stt.executeUpdate(SQL);
+//                data[0] = combo_nama.getSelectedItem().toString();
+//                data[1] = combo_mk.getSelectedItem().toString();
+//                data[2] = txt_kehadiran.getText();
+//                data[3] = txt_tugas1.getText();
+//                data[4] = txt_tugas2.getText();
+//                data[5] = txt_tugas3.getText();
+//                data[6] = txt_uts.getText();
+//                data[7] = txt_uas.getText();
+//                data[8] = String.format("%.2f", n_absen);
+//                data[9] = String.format("%.2f", n_tugas);
+//                data[10] = String.format("%.2f", n_uts);
+//                data[11] = String.format("%.2f", n_uas);
+//                data[12] = String.format("%.2f", n_akhir);
+//                data[13] = Character.toString(index);;
+//                data[14] = keterangan;
+//                tableModel.insertRow(0, data);
+//                stt.close();
+//                kon.close();
+//                membersihkan_teks();
+//                nonaktif_teks();
+//                aktif_btn_default();
+//            }catch(Exception ex){
+//                JOptionPane.showMessageDialog(null,
+//                    ex.getMessage(),"error",
+//                    JOptionPane.INFORMATION_MESSAGE
+//                );
+//            }
+//        }
     }//GEN-LAST:event_btn_simpanActionPerformed
 
     private void btn_batalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_batalActionPerformed
         // TODO add your handling code here:
-        aktif_btn_default();
-        membersihkan_teks();
-        nonaktif_teks();
+//        aktif_btn_default();
+//        membersihkan_teks();
+//        nonaktif_teks();
     }//GEN-LAST:event_btn_batalActionPerformed
 
     private void btn_keluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_keluarActionPerformed
@@ -829,124 +583,80 @@ public class frm_nilai extends javax.swing.JFrame {
 
     private void btn_cariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cariActionPerformed
         // TODO add your handling code here:
-//       //Menghapus seluruh isi data di dalam jtable(table_mahasiswa)
-//        tableModel.setRowCount(0);
-//        
-//        //gunakan query untuk mencari
-//        try{
-//            Class.forName(driver);
-//            Connection kon = DriverManager.getConnection(database, user, pass);
-//            Statement stt = kon.createStatement();
-//            String SQL = "SELECT *"
-//                    + "FROM t_nilai "
-//                    + "WHERE nim LIKE '%"+txt_cari_nim_kode_mk.getText()+"%'"
-//                    + "OR kd_mk LIKE '%"+txt_cari_nim_kode_mk.getText()+"%'";
-//            ResultSet res = stt.executeQuery(SQL);
-//            while(res.next()){
-//                //result field SQL : kd_nilai, nim, kd_mk, nilai, index, ket
-//                data[0] = res.getString(2); //start field at 2 for get field nim, kd_mk, nilai, index, ket
-//                data[1] = res.getString(3);
-//                data[2] = res.getString(4);
-//                data[3] = res.getString(5);
-//                data[4] = res.getString(6);
-//                tableModel.addRow(data);
-//            }
-//            res.close();
-//            stt.close();
-//            kon.close();
-//            aktif_btn_default();
-//            membersihkan_teks();
-//            nonaktif_teks();
-//        }catch(Exception ex){    
-//            System.err.println(ex.getMessage());
-//            JOptionPane.showMessageDialog(null, ex.getMessage(),"error",JOptionPane.INFORMATION_MESSAGE);
-//            System.exit(0);
-//        }
+        //       //Menghapus seluruh isi data di dalam jtable(table_mahasiswa)
+        //        tableModel.setRowCount(0);
+        //
+        //        //gunakan query untuk mencari
+        //        try{
+            //            Class.forName(driver);
+            //            Connection kon = DriverManager.getConnection(database, user, pass);
+            //            Statement stt = kon.createStatement();
+            //            String SQL = "SELECT *"
+            //                    + "FROM t_nilai "
+            //                    + "WHERE nim LIKE '%"+txt_cari_nim_kode_mk.getText()+"%'"
+            //                    + "OR kd_mk LIKE '%"+txt_cari_nim_kode_mk.getText()+"%'";
+            //            ResultSet res = stt.executeQuery(SQL);
+            //            while(res.next()){
+                //                //result field SQL : kd_nilai, nim, kd_mk, nilai, index, ket
+                //                data[0] = res.getString(2); //start field at 2 for get field nim, kd_mk, nilai, index, ket
+                //                data[1] = res.getString(3);
+                //                data[2] = res.getString(4);
+                //                data[3] = res.getString(5);
+                //                data[4] = res.getString(6);
+                //                tableModel.addRow(data);
+                //            }
+            //            res.close();
+            //            stt.close();
+            //            kon.close();
+            //            aktif_btn_default();
+            //            membersihkan_teks();
+            //            nonaktif_teks();
+            //        }catch(Exception ex){
+            //            System.err.println(ex.getMessage());
+            //            JOptionPane.showMessageDialog(null, ex.getMessage(),"error",JOptionPane.INFORMATION_MESSAGE);
+            //            System.exit(0);
+            //        }
     }//GEN-LAST:event_btn_cariActionPerformed
 
     private void btn_tampilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tampilActionPerformed
         // TODO add your handling code here:
-//        tableModel.setRowCount(0);
-//        settableload();
-//        aktif_btn_default();
-//        membersihkan_teks();
-//        nonaktif_teks();
-//        txt_cari_nim_kode_mk.setText("");
+        //        tableModel.setRowCount(0);
+        //        settableload();
+        //        aktif_btn_default();
+        //        membersihkan_teks();
+        //        nonaktif_teks();
+        //        txt_cari_nim_kode_mk.setText("");
     }//GEN-LAST:event_btn_tampilActionPerformed
-
-    private void tabel_nilaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabel_nilaiMouseClicked
-        if(evt.getClickCount()==1){
-            btn_tambah.setEnabled(false);
-            btn_simpan.setEnabled(false);
-            txt_angkatan.setEnabled(false);
-            try {
-                tampil_field();
-            } catch (ParseException ex) {
-                Logger.getLogger(frm_mhs.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }//GEN-LAST:event_tabel_nilaiMouseClicked
-
-    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        // TODO add your handling code here:
-        frm_utama utama = new frm_utama();
-        utama.setVisible(true);
-    }//GEN-LAST:event_formWindowClosed
 
     private void combo_namaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_namaActionPerformed
         // TODO add your handling code here:
-//        System.out.println(combo_nama.getSelectedItem());
+        //        txt_nim.setText(combo_nama.getSelectedItem().toString());
 
-        if(combo_nama.getSelectedIndex() == 0) {
-            txt_nim.setText("");
-        } else {
-            try {
-              Class.forName(driver);
-              Connection kon = DriverManager.getConnection(database, user, pass);
-              Statement stt = kon.createStatement();
-              String SQL = "SELECT nama, nim FROM t_mahasiswa WHERE nama = '"+combo_nama.getSelectedItem()+"' ";
-              ResultSet res = stt.executeQuery(SQL);
-              while (res.next()) {
-                  txt_nim.setText(res.getString("nim"));
-              }
-              res.close();
-              stt.close();
-              kon.close();
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null,
-                          ex.getMessage(), "Error",
-                          JOptionPane.INFORMATION_MESSAGE
-                  );
-            }
-        }
+//        try {
+//            Class.forName(driver);
+//            Connection kon = DriverManager.getConnection(database, user, pass);
+//            Statement stt = kon.createStatement();
+//            String SQL = "SELECT * FROM t_mahasiswa WHERE nama = "+combo_nama.getSelectedItem()+"";
+//            ResultSet res = stt.executeQuery(SQL);
+//            while (res.next()) {
+//                String nim = res.getString("nim");
+//                txt_nim.setText(nim);
+//            }
+//            res.close();
+//            stt.close();
+//            kon.close();
+//        } catch (Exception ex) {
+//            JOptionPane.showMessageDialog(null,
+//                ex.getMessage(), "Error",
+//                JOptionPane.INFORMATION_MESSAGE
+//            );
+//        }
+
     }//GEN-LAST:event_combo_namaActionPerformed
 
     private void combo_mkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_mkActionPerformed
         // TODO add your handling code here:
-//        System.out.println(combo_mk.getSelectedItem());
-        
-        if(combo_mk.getSelectedIndex() == 0) {
-            txt_kd_mk.setText("");
-        } else {
-            try {
-              Class.forName(driver);
-              Connection kon = DriverManager.getConnection(database, user, pass);
-              Statement stt = kon.createStatement();
-              String SQL = "SELECT * FROM t_mata_kuliah WHERE nama_mk = '"+combo_mk.getSelectedItem()+"'";
-              ResultSet res = stt.executeQuery(SQL);
-              while (res.next()) {
-                  txt_kd_mk.setText(res.getString("kd_mk"));
-              }
-              res.close();
-              stt.close();
-              kon.close();
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null,
-                          ex.getMessage(), "Error",
-                          JOptionPane.INFORMATION_MESSAGE
-                  );
-            }
-        }
+//        txt_kd_mk.setText(combo_mk.getSelectedItem().toString());
     }//GEN-LAST:event_combo_mkActionPerformed
 
     /**
@@ -966,20 +676,20 @@ public class frm_nilai extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frm_nilai.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frm_nilai_akhir.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frm_nilai.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frm_nilai_akhir.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frm_nilai.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frm_nilai_akhir.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frm_nilai.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frm_nilai_akhir.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frm_nilai().setVisible(true);
+                new frm_nilai_akhir().setVisible(true);
             }
         });
     }
@@ -1012,7 +722,7 @@ public class frm_nilai extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable tabel_nilai;
-    private com.toedter.calendar.JYearChooser txt_angkatan;
+    private javax.swing.JTextField txt_angkatan;
     private javax.swing.JTextField txt_cari_nim_kode_mk;
     private javax.swing.JTextField txt_kd_mk;
     private javax.swing.JTextField txt_kehadiran;
