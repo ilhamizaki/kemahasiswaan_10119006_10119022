@@ -37,7 +37,7 @@ public class frm_nilai_akhir extends javax.swing.JFrame {
         database = dbsetting.SettingPanel("DBDatabase");
         user = dbsetting.SettingPanel("DBUsername");
         pass = dbsetting.SettingPanel("DBPassword");
-        tabel_nilai.setModel(tableModel);
+        tabel_nilai_akhir.setModel(tableModel);
         settableload();
         aktif_btn_default();
         nonaktif_teks();
@@ -69,6 +69,66 @@ public class frm_nilai_akhir extends javax.swing.JFrame {
         };
     }
     // END handling table
+    
+    // START handling show all data in tabel_nilai_akhir
+    String data[] = new String[18];
+    private void settableload(){
+        String stat = "";
+        try{
+            Class.forName(driver);
+            Connection kon = DriverManager.getConnection(database,user,pass);
+            Statement stt=kon.createStatement();
+            String SQL = "SELECT nama_mk, persen_absen, persen_tugas, persen_uts, "
+                    + "persen_uas, kehadiran, tugas1, tugas2, tugas3, "
+                    + "uts, uas, nilai_absen, nilai_tugas, nilai_uts, nilai_uas, "
+                    + "nilai_akhir,t_nilai_akhir.index, ket\n" +
+                    "FROM t_nilai_akhir\n" +
+                    "JOIN t_mata_kuliah ON t_mata_kuliah.kd_mk = t_nilai_akhir.kd_mk";
+            ResultSet res = stt.executeQuery(SQL);
+            while(res.next()){
+                data[0] = res.getString(1);
+                data[1] = res.getString(2);
+                data[2] = res.getString(3);
+                data[3] = res.getString(4);
+                data[4] = res.getString(5);
+                data[5] = res.getString(6);
+                data[6] = res.getString(7);
+                data[7] = res.getString(8);
+                data[8] = res.getString(9);
+                data[9] = res.getString(10);
+                data[10] = res.getString(11);
+                data[11] = res.getString(12);
+                data[12] = res.getString(13);
+                data[13] = res.getString(14);
+                data[14] = res.getString(15);
+                data[15] = res.getString(16);
+                data[16] = res.getString(17);
+                data[17] = res.getString(18);
+                tableModel.addRow(data);
+            }
+            
+            //Get nama_mk for combobox
+            String SQL_nama_mk = "SELECT * FROM t_mata_kuliah";
+            ResultSet res_nama_mk = stt.executeQuery(SQL_nama_mk);
+            while (res_nama_mk.next()) {
+                //Set Value Combobox
+                String nama_mk = res_nama_mk.getString("nama_mk");
+                combo_mk.addItem(nama_mk);
+            }
+            
+            res.close();
+            res_nama_mk.close();
+            stt.close();
+            kon.close();
+            
+            
+        }catch(Exception ex){
+            System.err.println(ex.getMessage());
+            JOptionPane.showMessageDialog(null, ex.getMessage(),"error",JOptionPane.INFORMATION_MESSAGE);
+            System.exit(0);
+        }
+    }
+    // END handling show all data in tabel_nilai_akhir
     
     // START Method for handling UI
     public void membersihkan_teks(){
@@ -171,69 +231,10 @@ public class frm_nilai_akhir extends javax.swing.JFrame {
         }
     }
     
-    // Start handling show all data in tabel_mahasiswa
-    String data[] = new String[18];
-    private void settableload(){
-        String stat = "";
-        try{
-            Class.forName(driver);
-            Connection kon = DriverManager.getConnection(database,user,pass);
-            Statement stt=kon.createStatement();
-            String SQL = "SELECT nama_mk, persen_absen, persen_tugas, persen_uts, "
-                    + "persen_uas, kehadiran, tugas1, tugas2, tugas3, "
-                    + "uts, uas, nilai_absen, nilai_tugas, nilai_uts, nilai_uas, "
-                    + "nilai_akhir,t_nilai_akhir.index, ket\n" +
-                    "FROM t_nilai_akhir\n" +
-                    "JOIN t_mata_kuliah ON t_mata_kuliah.kd_mk = t_nilai_akhir.kd_mk";
-            ResultSet res = stt.executeQuery(SQL);
-            while(res.next()){
-                data[0] = res.getString(1);
-                data[1] = res.getString(2);
-                data[2] = res.getString(3);
-                data[3] = res.getString(4);
-                data[4] = res.getString(5);
-                data[5] = res.getString(6);
-                data[6] = res.getString(7);
-                data[7] = res.getString(8);
-                data[8] = res.getString(9);
-                data[9] = res.getString(10);
-                data[10] = res.getString(11);
-                data[11] = res.getString(12);
-                data[12] = res.getString(13);
-                data[13] = res.getString(14);
-                data[14] = res.getString(15);
-                data[15] = res.getString(16);
-                data[16] = res.getString(17);
-                data[17] = res.getString(18);
-                tableModel.addRow(data);
-            }
-            
-            //Get nama_mk for combobox
-            String SQL_nama_mk = "SELECT * FROM t_mata_kuliah";
-            ResultSet res_nama_mk = stt.executeQuery(SQL_nama_mk);
-            while (res_nama_mk.next()) {
-                //Set Value Combobox
-                String nama_mk = res_nama_mk.getString("nama_mk");
-                combo_mk.addItem(nama_mk);
-            }
-            
-            res.close();
-            res_nama_mk.close();
-            stt.close();
-            kon.close();
-            
-            
-        }catch(Exception ex){
-            System.err.println(ex.getMessage());
-            JOptionPane.showMessageDialog(null, ex.getMessage(),"error",JOptionPane.INFORMATION_MESSAGE);
-            System.exit(0);
-        }
-    }
-    
     // START Handling Update
     int row =0;
     public void tampil_field() throws ParseException{
-        row = tabel_nilai.getSelectedRow();
+        row = tabel_nilai_akhir.getSelectedRow();
         // Handling set input combo from table value
         String mk = tableModel.getValueAt(row, 0).toString(); 
         combo_mk.setSelectedItem(mk);
@@ -269,7 +270,7 @@ public class frm_nilai_akhir extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tabel_nilai = new javax.swing.JTable();
+        tabel_nilai_akhir = new javax.swing.JTable();
         btn_tambah = new javax.swing.JButton();
         btn_ubah = new javax.swing.JButton();
         btn_hapus = new javax.swing.JButton();
@@ -343,7 +344,7 @@ public class frm_nilai_akhir extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setText("Nama Mata Kuliah");
 
-        tabel_nilai.setModel(new javax.swing.table.DefaultTableModel(
+        tabel_nilai_akhir.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -362,12 +363,12 @@ public class frm_nilai_akhir extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tabel_nilai.addMouseListener(new java.awt.event.MouseAdapter() {
+        tabel_nilai_akhir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabel_nilaiMouseClicked(evt);
+                tabel_nilai_akhirMouseClicked(evt);
             }
         });
-        jScrollPane3.setViewportView(tabel_nilai);
+        jScrollPane3.setViewportView(tabel_nilai_akhir);
 
         btn_tambah.setText("Tambah");
         btn_tambah.addActionListener(new java.awt.event.ActionListener() {
@@ -623,14 +624,15 @@ public class frm_nilai_akhir extends javax.swing.JFrame {
                     .addComponent(txt_uts, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(txt_tugas1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel16)
-                    .addComponent(txt_persen_tugas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(txt_uas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel14)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel9)
+                        .addComponent(txt_tugas1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel16)
+                        .addComponent(txt_persen_tugas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3)
+                        .addComponent(txt_uas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
@@ -662,7 +664,7 @@ public class frm_nilai_akhir extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tabel_nilaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabel_nilaiMouseClicked
+    private void tabel_nilai_akhirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabel_nilai_akhirMouseClicked
         if(evt.getClickCount()==1){
             btn_tambah.setEnabled(false);
             btn_simpan.setEnabled(false);
@@ -673,7 +675,7 @@ public class frm_nilai_akhir extends javax.swing.JFrame {
                 Logger.getLogger(frm_mhs.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-    }//GEN-LAST:event_tabel_nilaiMouseClicked
+    }//GEN-LAST:event_tabel_nilai_akhirMouseClicked
 
     private void btn_tambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tambahActionPerformed
         // TODO add your handling code here:
@@ -1036,7 +1038,7 @@ public class frm_nilai_akhir extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable tabel_nilai;
+    private javax.swing.JTable tabel_nilai_akhir;
     private javax.swing.JTextField txt_cari_nim_kode_mk;
     private javax.swing.JTextField txt_kd_mk;
     private javax.swing.JTextField txt_kehadiran;

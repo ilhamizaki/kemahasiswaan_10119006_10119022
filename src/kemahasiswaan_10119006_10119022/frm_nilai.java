@@ -71,6 +71,73 @@ public class frm_nilai extends javax.swing.JFrame {
     }
     // END handling table
     
+    // START handling show all data in tabel_nilai
+    String data[] = new String[15];
+    private void settableload(){
+        String stat = "";
+        try{
+            Class.forName(driver);
+            Connection kon = DriverManager.getConnection(database,user,pass);
+            Statement stt=kon.createStatement();
+            String SQL = "SELECT nama, nama_mk, kehadiran, tugas1, tugas2, tugas3, "
+                    + "uts, uas, nilai_absen, nilai_tugas, nilai_uts, nilai_uas, "
+                    + "nilai_akhir,t_nilai.index, ket\n" +
+                    "FROM t_nilai\n" +
+                    "JOIN t_mahasiswa ON t_mahasiswa.nim = t_nilai.nim\n" +
+                    "JOIN t_mata_kuliah ON t_mata_kuliah.kd_mk = t_nilai.kd_mk";
+            ResultSet res = stt.executeQuery(SQL);
+            while(res.next()){
+                data[0] = res.getString(1);
+                data[1] = res.getString(2);
+                data[2] = res.getString(3);
+                data[3] = res.getString(4);
+                data[4] = res.getString(5);
+                data[5] = res.getString(6);
+                data[6] = res.getString(7);
+                data[7] = res.getString(8);
+                data[8] = res.getString(9);
+                data[9] = res.getString(10);
+                data[10] = res.getString(11);
+                data[11] = res.getString(12);
+                data[12] = res.getString(13);
+                data[13] = res.getString(14);
+                data[14] = res.getString(15);
+                tableModel.addRow(data);
+            }
+            
+            //Get nama for combobox
+            String SQL_nama = "SELECT * FROM t_mahasiswa";
+            ResultSet res_nama = stt.executeQuery(SQL_nama);
+            while (res_nama.next()) {
+                //Set Value Combobox
+                String nama = res_nama.getString("nama");
+                combo_nama.addItem(nama);
+            }
+            
+            //Get nama_mk for combobox
+            String SQL_nama_mk = "SELECT * FROM t_mata_kuliah";
+            ResultSet res_nama_mk = stt.executeQuery(SQL_nama_mk);
+            while (res_nama_mk.next()) {
+                //Set Value Combobox
+                String nama_mk = res_nama_mk.getString("nama_mk");
+                combo_mk.addItem(nama_mk);
+            }
+            
+            res.close();
+            res_nama.close();
+            res_nama_mk.close();
+            stt.close();
+            kon.close();
+            
+            
+        }catch(Exception ex){
+            System.err.println(ex.getMessage());
+            JOptionPane.showMessageDialog(null, ex.getMessage(),"error",JOptionPane.INFORMATION_MESSAGE);
+            System.exit(0);
+        }
+    }
+    // END handling show all data in tabel_nilai
+    
     // START Method for handling UI
     public void membersihkan_teks(){
         combo_nama.setSelectedIndex(0);
@@ -159,72 +226,6 @@ public class frm_nilai extends javax.swing.JFrame {
         
         if (jumlah_pertemuan < 11) {
             keterangan = "Tidak Lulus";
-        }
-    }
-    
-    // Start handling show all data in tabel_mahasiswa
-    String data[] = new String[15];
-    private void settableload(){
-        String stat = "";
-        try{
-            Class.forName(driver);
-            Connection kon = DriverManager.getConnection(database,user,pass);
-            Statement stt=kon.createStatement();
-            String SQL = "SELECT nama, nama_mk, kehadiran, tugas1, tugas2, tugas3, "
-                    + "uts, uas, nilai_absen, nilai_tugas, nilai_uts, nilai_uas, "
-                    + "nilai_akhir,t_nilai.index, ket\n" +
-                    "FROM t_nilai\n" +
-                    "JOIN t_mahasiswa ON t_mahasiswa.nim = t_nilai.nim\n" +
-                    "JOIN t_mata_kuliah ON t_mata_kuliah.kd_mk = t_nilai.kd_mk";
-            ResultSet res = stt.executeQuery(SQL);
-            while(res.next()){
-                data[0] = res.getString(1);
-                data[1] = res.getString(2);
-                data[2] = res.getString(3);
-                data[3] = res.getString(4);
-                data[4] = res.getString(5);
-                data[5] = res.getString(6);
-                data[6] = res.getString(7);
-                data[7] = res.getString(8);
-                data[8] = res.getString(9);
-                data[9] = res.getString(10);
-                data[10] = res.getString(11);
-                data[11] = res.getString(12);
-                data[12] = res.getString(13);
-                data[13] = res.getString(14);
-                data[14] = res.getString(15);
-                tableModel.addRow(data);
-            }
-            
-            //Get nama for combobox
-            String SQL_nama = "SELECT * FROM t_mahasiswa";
-            ResultSet res_nama = stt.executeQuery(SQL_nama);
-            while (res_nama.next()) {
-                //Set Value Combobox
-                String nama = res_nama.getString("nama");
-                combo_nama.addItem(nama);
-            }
-            
-            //Get nama_mk for combobox
-            String SQL_nama_mk = "SELECT * FROM t_mata_kuliah";
-            ResultSet res_nama_mk = stt.executeQuery(SQL_nama_mk);
-            while (res_nama_mk.next()) {
-                //Set Value Combobox
-                String nama_mk = res_nama_mk.getString("nama_mk");
-                combo_mk.addItem(nama_mk);
-            }
-            
-            res.close();
-            res_nama.close();
-            res_nama_mk.close();
-            stt.close();
-            kon.close();
-            
-            
-        }catch(Exception ex){
-            System.err.println(ex.getMessage());
-            JOptionPane.showMessageDialog(null, ex.getMessage(),"error",JOptionPane.INFORMATION_MESSAGE);
-            System.exit(0);
         }
     }
     
@@ -953,9 +954,9 @@ public class frm_nilai extends javax.swing.JFrame {
               kon.close();
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null,
-                          ex.getMessage(), "Error",
-                          JOptionPane.INFORMATION_MESSAGE
-                  );
+                ex.getMessage(), "Error",
+                JOptionPane.INFORMATION_MESSAGE
+                );
             }
         }
     }//GEN-LAST:event_combo_mkActionPerformed
