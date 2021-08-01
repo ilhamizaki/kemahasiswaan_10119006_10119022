@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 31 Jul 2021 pada 18.22
+-- Waktu pembuatan: 01 Agu 2021 pada 05.45
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.2.34
 
@@ -111,6 +111,47 @@ INSERT INTO `t_nilai` (`kd_nilai`, `nim`, `kd_mk`, `kehadiran`, `tugas1`, `tugas
 (36, '10105120', 'IF200012', 9, 78, 56, 90, 90, 89, 3.21, 18.67, 27, 35.6, 84.48, 'A', 'Tidak Lulus', 2021),
 (37, '10102103', 'IF37325P', 14, 56, 89, 87, 89, 90, 5, 19.33, 26.7, 36, 87.03, 'A', 'Lulus', 2021);
 
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `t_nilai_akhir`
+--
+
+CREATE TABLE `t_nilai_akhir` (
+  `kd_nilai_akhir` int(11) NOT NULL,
+  `kd_mk` varchar(8) DEFAULT NULL,
+  `persen_absen` double DEFAULT NULL,
+  `persen_tugas` double DEFAULT NULL,
+  `persen_uts` double DEFAULT NULL,
+  `persen_uas` double DEFAULT NULL,
+  `kehadiran` double DEFAULT NULL,
+  `tugas1` double DEFAULT NULL,
+  `tugas2` double DEFAULT NULL,
+  `tugas3` double DEFAULT NULL,
+  `uts` double DEFAULT NULL,
+  `uas` double DEFAULT NULL,
+  `nilai_absen` double DEFAULT NULL,
+  `nilai_tugas` double DEFAULT NULL,
+  `nilai_uts` double DEFAULT NULL,
+  `nilai_uas` double DEFAULT NULL,
+  `nilai_akhir` double DEFAULT NULL,
+  `index` char(1) DEFAULT NULL,
+  `ket` varchar(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `t_nilai_akhir`
+--
+
+INSERT INTO `t_nilai_akhir` (`kd_nilai_akhir`, `kd_mk`, `persen_absen`, `persen_tugas`, `persen_uts`, `persen_uas`, `kehadiran`, `tugas1`, `tugas2`, `tugas3`, `uts`, `uas`, `nilai_absen`, `nilai_tugas`, `nilai_uts`, `nilai_uas`, `nilai_akhir`, `index`, `ket`) VALUES
+(1, 'IF99191', 25, 25, 25, 25, 13, 45, 43, 34, 45, 30, 23.21, 10.17, 11.25, 7.5, 52.13, 'D', 'Tidak Lulus'),
+(2, 'IF37325P', 5, 15, 30, 40, 10, 89, 56, 78, 56, 78, 3.57, 11.15, 16.8, 31.2, 62.72, 'C', 'Tidak Lulus'),
+(3, 'IF200012', 5, 15, 30, 40, 14, 78, 56, 89, 78, 90, 5, 11.15, 23.4, 36, 75.55, 'B', 'Lulus'),
+(5, 'IF99192', 10, 20, 30, 40, 12, 67, 45, 89, 90, 78, 8.57, 13.4, 27, 31.2, 80.17, 'A', 'Lulus'),
+(6, 'IF34348', 10, 25, 25, 40, 11, 45, 67, 78, 90, 89, 7.86, 15.83, 22.5, 35.6, 81.79, 'A', 'Lulus'),
+(7, 'IF99191', 25, 25, 25, 25, 13, 45, 43, 34, 45, 30, 23.21, 10.17, 11.25, 7.5, 52.13, 'D', 'Tidak Lulus'),
+(8, 'IF200012', 5, 15, 40, 40, 14, 56, 87, 45, 89, 67, 5, 9.4, 35.6, 26.8, 76.8, 'B', 'Lulus');
+
 --
 -- Indexes for dumped tables
 --
@@ -136,6 +177,13 @@ ALTER TABLE `t_nilai`
   ADD KEY `kd_mk` (`kd_mk`);
 
 --
+-- Indeks untuk tabel `t_nilai_akhir`
+--
+ALTER TABLE `t_nilai_akhir`
+  ADD PRIMARY KEY (`kd_nilai_akhir`),
+  ADD KEY `kd_mk` (`kd_mk`);
+
+--
 -- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
@@ -144,6 +192,12 @@ ALTER TABLE `t_nilai`
 --
 ALTER TABLE `t_nilai`
   MODIFY `kd_nilai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+
+--
+-- AUTO_INCREMENT untuk tabel `t_nilai_akhir`
+--
+ALTER TABLE `t_nilai_akhir`
+  MODIFY `kd_nilai_akhir` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
@@ -155,6 +209,12 @@ ALTER TABLE `t_nilai`
 ALTER TABLE `t_nilai`
   ADD CONSTRAINT `t_nilai_ibfk_1` FOREIGN KEY (`nim`) REFERENCES `t_mahasiswa` (`nim`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `t_nilai_ibfk_2` FOREIGN KEY (`kd_mk`) REFERENCES `t_mata_kuliah` (`kd_mk`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `t_nilai_akhir`
+--
+ALTER TABLE `t_nilai_akhir`
+  ADD CONSTRAINT `t_nilai_akhir_ibfk_1` FOREIGN KEY (`kd_mk`) REFERENCES `t_mata_kuliah` (`kd_mk`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -57,7 +57,7 @@ public class frm_utama extends javax.swing.JFrame {
 
         jToolBar1.setRollover(true);
 
-        menu_form_mahasiswa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kemahasiswaan_10119006_10119022/mahasiswa.png"))); // NOI18N
+        menu_form_mahasiswa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image_10119006_10119022/icons8_student_male_50px.png"))); // NOI18N
         menu_form_mahasiswa.setText("Data Mahasiswa");
         menu_form_mahasiswa.setFocusable(false);
         menu_form_mahasiswa.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -70,7 +70,7 @@ public class frm_utama extends javax.swing.JFrame {
         jToolBar1.add(menu_form_mahasiswa);
         jToolBar1.add(jSeparator3);
 
-        menu_matkul.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kemahasiswaan_10119006_10119022/mata_kuliah.png"))); // NOI18N
+        menu_matkul.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image_10119006_10119022/icons8_classroom_50px.png"))); // NOI18N
         menu_matkul.setText("Data Mata Kuliah");
         menu_matkul.setFocusable(false);
         menu_matkul.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -83,7 +83,7 @@ public class frm_utama extends javax.swing.JFrame {
         jToolBar1.add(menu_matkul);
         jToolBar1.add(jSeparator1);
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kemahasiswaan_10119006_10119022/nilai.png"))); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image_10119006_10119022/icons8_report_card_50px.png"))); // NOI18N
         jButton5.setText("Data Nilai Mahasiswa");
         jButton5.setFocusable(false);
         jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -96,7 +96,7 @@ public class frm_utama extends javax.swing.JFrame {
         jToolBar1.add(jButton5);
         jToolBar1.add(jSeparator2);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kemahasiswaan_10119006_10119022/nilai.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image_10119006_10119022/icons8_single_page_mode_50px.png"))); // NOI18N
         jButton1.setText("Simulasi Nilai Akhir");
         jButton1.setFocusable(false);
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -109,7 +109,7 @@ public class frm_utama extends javax.swing.JFrame {
         jToolBar1.add(jButton1);
         jToolBar1.add(jSeparator4);
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kemahasiswaan_10119006_10119022/nilai.png"))); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image_10119006_10119022/icons8_transaction_list_50px.png"))); // NOI18N
         jButton2.setText("Simulasi Kasus");
         jButton2.setFocusable(false);
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -123,11 +123,11 @@ public class frm_utama extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("10119022 / Muhammad Ikhlas N R");
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kemahasiswaan_10119006_10119022/ilham-006.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image_10119006_10119022/ilham-006.png"))); // NOI18N
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kemahasiswaan_10119006_10119022/ikhlas-022.png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image_10119006_10119022/ikhlas-022.png"))); // NOI18N
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Foto Pembuat ");
 
         jMenu1.setText("Aplikasi Kemahasiswaan");

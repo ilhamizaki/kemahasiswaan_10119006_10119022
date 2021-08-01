@@ -101,7 +101,7 @@
         <Component class="javax.swing.JButton" name="menu_form_mahasiswa">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/kemahasiswaan_10119006_10119022/mahasiswa.png"/>
+              <Image iconType="3" name="/image_10119006_10119022/icons8_student_male_50px.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Data Mahasiswa"/>
             <Property name="focusable" type="boolean" value="false"/>
@@ -117,7 +117,7 @@
         <Component class="javax.swing.JButton" name="menu_matkul">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/kemahasiswaan_10119006_10119022/mata_kuliah.png"/>
+              <Image iconType="3" name="/image_10119006_10119022/icons8_classroom_50px.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Data Mata Kuliah"/>
             <Property name="focusable" type="boolean" value="false"/>
@@ -133,7 +133,7 @@
         <Component class="javax.swing.JButton" name="jButton5">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/kemahasiswaan_10119006_10119022/nilai.png"/>
+              <Image iconType="3" name="/image_10119006_10119022/icons8_report_card_50px.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Data Nilai Mahasiswa"/>
             <Property name="focusable" type="boolean" value="false"/>
@@ -149,7 +149,7 @@
         <Component class="javax.swing.JButton" name="jButton1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/kemahasiswaan_10119006_10119022/nilai.png"/>
+              <Image iconType="3" name="/image_10119006_10119022/icons8_single_page_mode_50px.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Simulasi Nilai Akhir"/>
             <Property name="focusable" type="boolean" value="false"/>
@@ -165,7 +165,7 @@
         <Component class="javax.swing.JButton" name="jButton2">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/kemahasiswaan_10119006_10119022/nilai.png"/>
+              <Image iconType="3" name="/image_10119006_10119022/icons8_transaction_list_50px.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Simulasi Kasus"/>
             <Property name="focusable" type="boolean" value="false"/>
@@ -196,21 +196,21 @@
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/kemahasiswaan_10119006_10119022/ilham-006.png"/>
+          <Image iconType="3" name="/image_10119006_10119022/ilham-006.png"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/kemahasiswaan_10119006_10119022/ikhlas-022.png"/>
+          <Image iconType="3" name="/image_10119006_10119022/ikhlas-022.png"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="14" style="0"/>
+          <Font name="Tahoma" size="14" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Foto Pembuat "/>
       </Properties>
