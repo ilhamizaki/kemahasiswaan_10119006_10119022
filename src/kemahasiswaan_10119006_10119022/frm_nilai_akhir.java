@@ -279,9 +279,7 @@ public class frm_nilai_akhir extends javax.swing.JFrame {
         btn_keluar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        btn_cari = new javax.swing.JButton();
-        btn_tampil = new javax.swing.JButton();
-        txt_cari_nim_kode_mk = new javax.swing.JTextField();
+        txt_cari = new javax.swing.JTextField();
         combo_mk = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -412,22 +410,14 @@ public class frm_nilai_akhir extends javax.swing.JFrame {
             }
         });
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Pencarian Data Nilai Mahasiswa"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Pencarian Data Nilai Akhir"));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel8.setText("NIM/Kode MK");
+        jLabel8.setText("Masukkan Data");
 
-        btn_cari.setText("Cari");
-        btn_cari.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_cariActionPerformed(evt);
-            }
-        });
-
-        btn_tampil.setText("Tampilkan Keseluruhan Data");
-        btn_tampil.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_tampilActionPerformed(evt);
+        txt_cari.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_cariKeyReleased(evt);
             }
         });
 
@@ -439,12 +429,8 @@ public class frm_nilai_akhir extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel8)
                 .addGap(18, 18, 18)
-                .addComponent(txt_cari_nim_kode_mk, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
-                .addComponent(btn_cari)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_tampil, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(txt_cari, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -452,10 +438,8 @@ public class frm_nilai_akhir extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(btn_cari)
-                    .addComponent(btn_tampil)
-                    .addComponent(txt_cari_nim_kode_mk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(26, Short.MAX_VALUE))
+                    .addComponent(txt_cari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         combo_mk.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- Pilih Mata Kuliah -" }));
@@ -891,53 +875,6 @@ public class frm_nilai_akhir extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btn_keluarActionPerformed
 
-    private void btn_cariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cariActionPerformed
-        // TODO add your handling code here:
-        //       //Menghapus seluruh isi data di dalam jtable(table_mahasiswa)
-        //        tableModel.setRowCount(0);
-        //
-        //        //gunakan query untuk mencari
-        //        try{
-            //            Class.forName(driver);
-            //            Connection kon = DriverManager.getConnection(database, user, pass);
-            //            Statement stt = kon.createStatement();
-            //            String SQL = "SELECT *"
-            //                    + "FROM t_nilai "
-            //                    + "WHERE nim LIKE '%"+txt_cari_nim_kode_mk.getText()+"%'"
-            //                    + "OR kd_mk LIKE '%"+txt_cari_nim_kode_mk.getText()+"%'";
-            //            ResultSet res = stt.executeQuery(SQL);
-            //            while(res.next()){
-                //                //result field SQL : kd_nilai, nim, kd_mk, nilai, index, ket
-                //                data[0] = res.getString(2); //start field at 2 for get field nim, kd_mk, nilai, index, ket
-                //                data[1] = res.getString(3);
-                //                data[2] = res.getString(4);
-                //                data[3] = res.getString(5);
-                //                data[4] = res.getString(6);
-                //                tableModel.addRow(data);
-                //            }
-            //            res.close();
-            //            stt.close();
-            //            kon.close();
-            //            aktif_btn_default();
-            //            membersihkan_teks();
-            //            nonaktif_teks();
-            //        }catch(Exception ex){
-            //            System.err.println(ex.getMessage());
-            //            JOptionPane.showMessageDialog(null, ex.getMessage(),"error",JOptionPane.INFORMATION_MESSAGE);
-            //            System.exit(0);
-            //        }
-    }//GEN-LAST:event_btn_cariActionPerformed
-
-    private void btn_tampilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tampilActionPerformed
-        // TODO add your handling code here:
-        //        tableModel.setRowCount(0);
-        //        settableload();
-        //        aktif_btn_default();
-        //        membersihkan_teks();
-        //        nonaktif_teks();
-        //        txt_cari_nim_kode_mk.setText("");
-    }//GEN-LAST:event_btn_tampilActionPerformed
-
     private void combo_mkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_mkActionPerformed
         // TODO add your handling code here:
 //        System.out.println(combo_mk.getSelectedItem());
@@ -971,6 +908,59 @@ public class frm_nilai_akhir extends javax.swing.JFrame {
         frm_utama utama = new frm_utama();
         utama.setVisible(true);
     }//GEN-LAST:event_formWindowClosed
+
+    private void txt_cariKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_cariKeyReleased
+        // TODO add your handling code here:
+        //Menghapus seluruh isi data di dalam jtable(table_mahasiswa)
+        tableModel.setRowCount(0);
+        
+        //gunakan query untuk mencari
+        try{
+            Class.forName(driver);
+            Connection kon = DriverManager.getConnection(database, user, pass);
+            Statement stt = kon.createStatement();
+            String SQL = "SELECT nama_mk, persen_absen, persen_tugas, persen_uts, "
+                    + "persen_uas, kehadiran, tugas1, tugas2, tugas3, "
+                    + "uts, uas, nilai_absen, nilai_tugas, nilai_uts, nilai_uas, "
+                    + "nilai_akhir,t_nilai_akhir.index, ket " 
+                    + "FROM t_nilai_akhir "
+                    + "JOIN t_mata_kuliah ON t_mata_kuliah.kd_mk = t_nilai_akhir.kd_mk "
+                    + "WHERE nama_mk LIKE '%"+txt_cari.getText()+"%'";
+            
+            ResultSet res = stt.executeQuery(SQL);
+            while(res.next()){
+                data[0] = res.getString(1);
+                data[1] = res.getString(2);
+                data[2] = res.getString(3);
+                data[3] = res.getString(4);
+                data[4] = res.getString(5);
+                data[5] = res.getString(6);
+                data[6] = res.getString(7);
+                data[7] = res.getString(8);
+                data[8] = res.getString(9);
+                data[9] = res.getString(10);
+                data[10] = res.getString(11);
+                data[11] = res.getString(12);
+                data[12] = res.getString(13);
+                data[13] = res.getString(14);
+                data[14] = res.getString(15);
+                data[15] = res.getString(16);
+                data[16] = res.getString(17);
+                data[17] = res.getString(18);
+                tableModel.addRow(data);
+            }
+            res.close();
+            stt.close();
+            kon.close();
+            aktif_btn_default();
+            membersihkan_teks();
+            nonaktif_teks();
+        }catch(Exception ex){    
+            System.err.println(ex.getMessage());
+            JOptionPane.showMessageDialog(null, ex.getMessage(),"error",JOptionPane.INFORMATION_MESSAGE);
+            System.exit(0);
+        }
+    }//GEN-LAST:event_txt_cariKeyReleased
 
     /**
      * @param args the command line arguments
@@ -1009,12 +999,10 @@ public class frm_nilai_akhir extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_batal;
-    private javax.swing.JButton btn_cari;
     private javax.swing.JButton btn_hapus;
     private javax.swing.JButton btn_keluar;
     private javax.swing.JButton btn_simpan;
     private javax.swing.JButton btn_tambah;
-    private javax.swing.JButton btn_tampil;
     private javax.swing.JButton btn_ubah;
     private javax.swing.JComboBox<String> combo_mk;
     private javax.swing.JLabel jLabel1;
@@ -1039,7 +1027,7 @@ public class frm_nilai_akhir extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable tabel_nilai_akhir;
-    private javax.swing.JTextField txt_cari_nim_kode_mk;
+    private javax.swing.JTextField txt_cari;
     private javax.swing.JTextField txt_kd_mk;
     private javax.swing.JTextField txt_kehadiran;
     private javax.swing.JTextField txt_persen_absen;

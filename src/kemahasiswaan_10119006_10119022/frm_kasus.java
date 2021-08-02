@@ -214,9 +214,7 @@ public class frm_kasus extends javax.swing.JFrame {
         btn_keluar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        txt_cari_nim = new javax.swing.JTextField();
-        btn_cari = new javax.swing.JButton();
-        btn_tampil = new javax.swing.JButton();
+        txt_cari = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -248,7 +246,12 @@ public class frm_kasus extends javax.swing.JFrame {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 102));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -261,10 +264,10 @@ public class frm_kasus extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(246, 246, 246)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(377, 377, 377))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -342,22 +345,14 @@ public class frm_kasus extends javax.swing.JFrame {
             }
         });
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Pencarian Data Mahasiswa"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Pencarian Data Transaksi"));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel8.setText("Masukan NIM");
+        jLabel8.setText("Masukan Data");
 
-        btn_cari.setText("Cari");
-        btn_cari.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_cariActionPerformed(evt);
-            }
-        });
-
-        btn_tampil.setText("Tampilkan Keseluruhan Data");
-        btn_tampil.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_tampilActionPerformed(evt);
+        txt_cari.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_cariKeyReleased(evt);
             }
         });
 
@@ -369,12 +364,8 @@ public class frm_kasus extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel8)
                 .addGap(18, 18, 18)
-                .addComponent(txt_cari_nim, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btn_cari)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_tampil, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(txt_cari, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -382,10 +373,8 @@ public class frm_kasus extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(txt_cari_nim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_cari)
-                    .addComponent(btn_tampil))
-                .addContainerGap(26, Short.MAX_VALUE))
+                    .addComponent(txt_cari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Data Pelanggan"));
@@ -539,13 +528,12 @@ public class frm_kasus extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(btn_hapus)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btn_simpan, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(286, 286, 286))
+                                .addComponent(btn_simpan, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -854,49 +842,57 @@ public class frm_kasus extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btn_keluarActionPerformed
 
-    private void btn_cariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cariActionPerformed
+    private void txt_cariKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_cariKeyReleased
         // TODO add your handling code here:
-//        //Menghapus seluruh isi data di dalam jtable(table_mahasiswa)
-//        tableModel.setRowCount(0);
-//
-//        //gunakan query untuk mencari
-//        try{
-//            Class.forName(driver);
-//            Connection kon = DriverManager.getConnection(database, user, pass);
-//            Statement stt = kon.createStatement();
-//            String SQL = "SELECT * FROM t_mahasiswa "
-//            + "WHERE nim LIKE '%"+txt_cari_nim.getText()+"%'";
-//            ResultSet res = stt.executeQuery(SQL);
-//            while(res.next()){
-//                data[0] = res.getString(1);
-//                data[1] = res.getString(2);
-//                data[2] = res.getString(3);
-//                data[3] = res.getString(4);
-//                data[4] = res.getString(5);
-//                tableModel.addRow(data);
-//            }
-//            res.close();
-//            stt.close();
-//            kon.close();
-//            aktif_btn_default();
-//            membersihkan_teks();
-//            nonaktif_teks();
-//        }catch(Exception ex){
-//            System.err.println(ex.getMessage());
-//            JOptionPane.showMessageDialog(null, ex.getMessage(),"error",JOptionPane.INFORMATION_MESSAGE);
-//            System.exit(0);
-//        }
-    }//GEN-LAST:event_btn_cariActionPerformed
+        //Menghapus seluruh isi data di dalam jtable(table_mahasiswa)
+        tableModel.setRowCount(0);
+        
+        //gunakan query untuk mencari
+        try{
+            Class.forName(driver);
+            Connection kon = DriverManager.getConnection(database, user, pass);
+            Statement stt = kon.createStatement();
+            String SQL = "SELECT id_transaksi, nama, nama_pkt, jmlh_cucian, "
+                    + "total_berat, total_harga, tgl_masuk, keterangan\n"
+                    + "FROM t_transaksi\n"
+                    + "JOIN t_pelanggan ON t_pelanggan.id_pelanggan = t_transaksi.id_pelanggan\n"
+                    + "JOIN t_paket ON t_paket.kd_paket = t_transaksi.kd_paket "
+                    + "WHERE id_transaksi LIKE '%"+txt_cari.getText()+"%'"
+                    + "OR nama LIKE '%"+txt_cari.getText()+"%'"
+                    + "OR nama_pkt LIKE '%"+txt_cari.getText()+"%'"
+                    + "OR tgl_masuk LIKE '%"+txt_cari.getText()+"%'"
+                    + "OR keterangan LIKE '%"+txt_cari.getText()+"%'";
+            
+            ResultSet res = stt.executeQuery(SQL);
+            while(res.next()){
+                data[0] = res.getString(1);
+                data[1] = res.getString(2);
+                data[2] = res.getString(3);
+                data[3] = res.getString(4);
+                data[4] = res.getString(5);
+                data[5] = res.getString(6);
+                data[6] = res.getString(7);
+                data[7] = res.getString(8);
+                tableModel.addRow(data);
+            }
+            res.close();
+            stt.close();
+            kon.close();
+            aktif_btn_default();
+            membersihkan_teks();
+            nonaktif_teks();
+        }catch(Exception ex){    
+            System.err.println(ex.getMessage());
+            JOptionPane.showMessageDialog(null, ex.getMessage(),"error",JOptionPane.INFORMATION_MESSAGE);
+            System.exit(0);
+        }
+    }//GEN-LAST:event_txt_cariKeyReleased
 
-    private void btn_tampilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tampilActionPerformed
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
-//        tableModel.setRowCount(0);
-//        settableload();
-//        aktif_btn_default();
-//        membersihkan_teks();
-//        nonaktif_teks();
-//        txt_cari_nim.setText("");
-    }//GEN-LAST:event_btn_tampilActionPerformed
+        frm_utama utama = new frm_utama();
+        utama.setVisible(true);
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments
@@ -935,12 +931,10 @@ public class frm_kasus extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_batal;
-    private javax.swing.JButton btn_cari;
     private javax.swing.JButton btn_hapus;
     private javax.swing.JButton btn_keluar;
     private javax.swing.JButton btn_simpan;
     private javax.swing.JButton btn_tambah;
-    private javax.swing.JButton btn_tampil;
     private javax.swing.JButton btn_ubah;
     private javax.swing.JComboBox<String> combo_paket;
     private javax.swing.JLabel jLabel1;
@@ -964,7 +958,7 @@ public class frm_kasus extends javax.swing.JFrame {
     private javax.swing.JTable tabel_transaksi;
     private javax.swing.JTextArea txt_alamat;
     private javax.swing.JTextField txt_berat;
-    private javax.swing.JTextField txt_cari_nim;
+    private javax.swing.JTextField txt_cari;
     private javax.swing.JTextField txt_cucian;
     private javax.swing.JTextArea txt_keterangan;
     private javax.swing.JTextField txt_nama;

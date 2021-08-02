@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 01 Agu 2021 pada 05.45
+-- Waktu pembuatan: 02 Agu 2021 pada 11.36
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.2.34
 
@@ -152,6 +152,84 @@ INSERT INTO `t_nilai_akhir` (`kd_nilai_akhir`, `kd_mk`, `persen_absen`, `persen_
 (7, 'IF99191', 25, 25, 25, 25, 13, 45, 43, 34, 45, 30, 23.21, 10.17, 11.25, 7.5, 52.13, 'D', 'Tidak Lulus'),
 (8, 'IF200012', 5, 15, 40, 40, 14, 56, 87, 45, 89, 67, 5, 9.4, 35.6, 26.8, 76.8, 'B', 'Lulus');
 
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `t_paket`
+--
+
+CREATE TABLE `t_paket` (
+  `kd_paket` varchar(2) NOT NULL,
+  `nama_pkt` varchar(20) NOT NULL,
+  `harga_pkt` int(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `t_paket`
+--
+
+INSERT INTO `t_paket` (`kd_paket`, `nama_pkt`, `harga_pkt`) VALUES
+('P1', 'Ekonomis', 6000),
+('P2', 'Reguler', 7000),
+('P3', 'Express', 8000),
+('P4', 'Super', 12500);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `t_pelanggan`
+--
+
+CREATE TABLE `t_pelanggan` (
+  `id_pelanggan` int(5) NOT NULL,
+  `nama` varchar(20) NOT NULL,
+  `alamat` varchar(255) NOT NULL,
+  `telepon` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `t_pelanggan`
+--
+
+INSERT INTO `t_pelanggan` (`id_pelanggan`, `nama`, `alamat`, `telepon`) VALUES
+(11111, 'Rizki', 'Pamuruyan', '08129554322'),
+(11112, 'Kanjeng', 'Tubagus', '0845595929'),
+(11113, 'Ningrat', 'Bakti', '0852048315'),
+(11114, 'Nuri Anjasmara', 'Ahmad Yani', '0896959655'),
+(11115, 'Zaki', 'Nusa Indah', '0822534721'),
+(11116, 'Asep', 'Melati', '0823462362'),
+(11133, 'Siti Nur', 'Jl. Ciputat No 16', '0885347244');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `t_transaksi`
+--
+
+CREATE TABLE `t_transaksi` (
+  `id_transaksi` int(5) NOT NULL,
+  `id_pelanggan` int(3) DEFAULT NULL,
+  `jmlh_cucian` int(5) DEFAULT NULL,
+  `kd_paket` varchar(2) DEFAULT NULL,
+  `total_berat` int(5) DEFAULT NULL,
+  `total_harga` int(10) DEFAULT NULL,
+  `tgl_masuk` date DEFAULT current_timestamp(),
+  `keterangan` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `t_transaksi`
+--
+
+INSERT INTO `t_transaksi` (`id_transaksi`, `id_pelanggan`, `jmlh_cucian`, `kd_paket`, `total_berat`, `total_harga`, `tgl_masuk`, `keterangan`) VALUES
+(17288, 11111, 6, 'P3', 5, 40000, '2021-04-21', 'Sepatu'),
+(17289, 11112, 3, 'P1', 2, 12000, '2021-08-02', 'Kemeja'),
+(17290, 11113, 8, 'P2', 2, 14000, '2021-04-24', 'Celana Jeans'),
+(17291, 11114, 1, 'P3', 2, 16000, '2021-04-20', 'Sarung bantal'),
+(17292, 11115, 5, 'P4', 3, 37000, '2021-04-19', 'Selimut'),
+(17293, 11116, 6, 'P2', 3, 21000, '2021-08-02', 'Jeans'),
+(17309, 11133, 4, 'P1', 3, 18000, '2021-08-02', 'Baju Renang');
+
 --
 -- Indexes for dumped tables
 --
@@ -184,6 +262,26 @@ ALTER TABLE `t_nilai_akhir`
   ADD KEY `kd_mk` (`kd_mk`);
 
 --
+-- Indeks untuk tabel `t_paket`
+--
+ALTER TABLE `t_paket`
+  ADD PRIMARY KEY (`kd_paket`);
+
+--
+-- Indeks untuk tabel `t_pelanggan`
+--
+ALTER TABLE `t_pelanggan`
+  ADD PRIMARY KEY (`id_pelanggan`);
+
+--
+-- Indeks untuk tabel `t_transaksi`
+--
+ALTER TABLE `t_transaksi`
+  ADD PRIMARY KEY (`id_transaksi`),
+  ADD KEY `id_pelanggan_FK1` (`id_pelanggan`),
+  ADD KEY `kd_paket_FK1` (`kd_paket`);
+
+--
 -- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
@@ -198,6 +296,18 @@ ALTER TABLE `t_nilai`
 --
 ALTER TABLE `t_nilai_akhir`
   MODIFY `kd_nilai_akhir` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT untuk tabel `t_pelanggan`
+--
+ALTER TABLE `t_pelanggan`
+  MODIFY `id_pelanggan` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11134;
+
+--
+-- AUTO_INCREMENT untuk tabel `t_transaksi`
+--
+ALTER TABLE `t_transaksi`
+  MODIFY `id_transaksi` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17310;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
@@ -215,6 +325,13 @@ ALTER TABLE `t_nilai`
 --
 ALTER TABLE `t_nilai_akhir`
   ADD CONSTRAINT `t_nilai_akhir_ibfk_1` FOREIGN KEY (`kd_mk`) REFERENCES `t_mata_kuliah` (`kd_mk`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `t_transaksi`
+--
+ALTER TABLE `t_transaksi`
+  ADD CONSTRAINT `id_pelanggan_FK1` FOREIGN KEY (`id_pelanggan`) REFERENCES `t_pelanggan` (`id_pelanggan`) ON DELETE CASCADE,
+  ADD CONSTRAINT `kd_paket_FK1` FOREIGN KEY (`kd_paket`) REFERENCES `t_paket` (`kd_paket`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

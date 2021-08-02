@@ -70,7 +70,6 @@ public class frm_matkul extends javax.swing.JFrame {
             Statement stt=kon.createStatement();
             String SQL = "select * from t_mata_kuliah";
             ResultSet res = stt.executeQuery(SQL);
-            System.out.println(res);
             while(res.next()){
                 data[0] = res.getString(1);
                 data[1] = res.getString(2);
@@ -151,9 +150,7 @@ public class frm_matkul extends javax.swing.JFrame {
         btn_keluar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        txt_cari_kode_matkul = new javax.swing.JTextField();
-        btn_cari = new javax.swing.JButton();
-        btn_tampil = new javax.swing.JButton();
+        txt_cari = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -263,19 +260,11 @@ public class frm_matkul extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Pencarian Data Mata Kuliah"));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel8.setText("Masukan Kode Matkul");
+        jLabel8.setText("Masukan Data");
 
-        btn_cari.setText("Cari");
-        btn_cari.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_cariActionPerformed(evt);
-            }
-        });
-
-        btn_tampil.setText("Tampilkan Keseluruhan Data");
-        btn_tampil.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_tampilActionPerformed(evt);
+        txt_cari.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_cariKeyReleased(evt);
             }
         });
 
@@ -287,12 +276,8 @@ public class frm_matkul extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel8)
                 .addGap(18, 18, 18)
-                .addComponent(txt_cari_kode_matkul, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btn_cari)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_tampil, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(txt_cari, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(346, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -300,10 +285,8 @@ public class frm_matkul extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(txt_cari_kode_matkul, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_cari)
-                    .addComponent(btn_tampil))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txt_cari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -319,7 +302,7 @@ public class frm_matkul extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btn_ubah, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btn_hapus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_hapus, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btn_simpan, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -491,17 +474,22 @@ public class frm_matkul extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_ubahActionPerformed
 
-    private void btn_tampilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tampilActionPerformed
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
-        tableModel.setRowCount(0);
-        settableload();
-        aktif_btn_default();
-        membersihkan_teks();
-        nonaktif_teks();
-        txt_cari_kode_matkul.setText("");
-    }//GEN-LAST:event_btn_tampilActionPerformed
+        frm_utama utama = new frm_utama();
+        utama.setVisible(true);
+    }//GEN-LAST:event_formWindowClosed
 
-    private void btn_cariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cariActionPerformed
+    private void btn_keluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_keluarActionPerformed
+        // TODO add your handling code here:
+        frm_utama utama = new frm_utama();
+        utama.setVisible(true);
+        
+        //menghilangkan form utam
+        this.setVisible(false);
+    }//GEN-LAST:event_btn_keluarActionPerformed
+
+    private void txt_cariKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_cariKeyReleased
         // TODO add your handling code here:
         //Menghapus seluruh isi data di dalam jtable(table_mahasiswa)
         tableModel.setRowCount(0);
@@ -511,8 +499,9 @@ public class frm_matkul extends javax.swing.JFrame {
             Class.forName(driver);
             Connection kon = DriverManager.getConnection(database, user, pass);
             Statement stt = kon.createStatement();
-            String SQL = "SELECT * FROM t_mata_kuliah WHERE "
-                        + "kd_mk LIKE '%"+txt_cari_kode_matkul.getText()+"%'";
+            String SQL = "SELECT * FROM t_mata_kuliah "
+                    + "WHERE nama_mk LIKE '%"+txt_cari.getText()+"%' "
+                    + "OR kd_mk LIKE '%"+txt_cari.getText()+"%'";
             ResultSet res = stt.executeQuery(SQL);
             while(res.next()){
                 data[0] = res.getString(1);
@@ -530,22 +519,7 @@ public class frm_matkul extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex.getMessage(),"error",JOptionPane.INFORMATION_MESSAGE);
             System.exit(0);
         }
-    }//GEN-LAST:event_btn_cariActionPerformed
-
-    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        // TODO add your handling code here:
-        frm_utama utama = new frm_utama();
-        utama.setVisible(true);
-    }//GEN-LAST:event_formWindowClosed
-
-    private void btn_keluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_keluarActionPerformed
-        // TODO add your handling code here:
-        frm_utama utama = new frm_utama();
-        utama.setVisible(true);
-        
-        //menghilangkan form utam
-        this.setVisible(false);
-    }//GEN-LAST:event_btn_keluarActionPerformed
+    }//GEN-LAST:event_txt_cariKeyReleased
 
     /**
      * @param args the command line arguments
@@ -584,12 +558,10 @@ public class frm_matkul extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_batal;
-    private javax.swing.JButton btn_cari;
     private javax.swing.JButton btn_hapus;
     private javax.swing.JButton btn_keluar;
     private javax.swing.JButton btn_simpan;
     private javax.swing.JButton btn_tambah;
-    private javax.swing.JButton btn_tampil;
     private javax.swing.JButton btn_ubah;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -599,7 +571,7 @@ public class frm_matkul extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable tabel_matkul;
-    private javax.swing.JTextField txt_cari_kode_matkul;
+    private javax.swing.JTextField txt_cari;
     private javax.swing.JTextField txt_kode_matkul;
     private javax.swing.JTextField txt_nama_matkul;
     // End of variables declaration//GEN-END:variables

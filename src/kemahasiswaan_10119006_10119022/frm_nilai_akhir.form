@@ -340,7 +340,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="Pencarian Data Nilai Mahasiswa"/>
+            <TitledBorder title="Pencarian Data Nilai Akhir"/>
           </Border>
         </Property>
       </Properties>
@@ -352,12 +352,8 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="txt_cari_nim_kode_mk" min="-2" pref="177" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                  <Component id="btn_cari" min="-2" max="-2" attributes="0"/>
+                  <Component id="txt_cari" min="-2" pref="177" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="btn_tampil" min="-2" pref="199" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -367,11 +363,9 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btn_cari" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btn_tampil" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txt_cari_nim_kode_mk" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txt_cari" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="26" max="32767" attributes="0"/>
+                  <EmptySpace pref="28" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -382,26 +376,13 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="18" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="NIM/Kode MK"/>
+            <Property name="text" type="java.lang.String" value="Masukkan Data"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="btn_cari">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Cari"/>
-          </Properties>
+        <Component class="javax.swing.JTextField" name="txt_cari">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_cariActionPerformed"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_cariKeyReleased"/>
           </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="btn_tampil">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Tampilkan Keseluruhan Data"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_tampilActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txt_cari_nim_kode_mk">
         </Component>
       </SubComponents>
     </Container>
