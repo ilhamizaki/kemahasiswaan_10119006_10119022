@@ -201,6 +201,7 @@ public class frm_kasus extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel5 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -224,6 +225,7 @@ public class frm_kasus extends javax.swing.JFrame {
         txt_alamat = new javax.swing.JTextArea();
         txt_no_telp = new javax.swing.JTextField();
         txt_nama = new javax.swing.JTextField();
+        jPanel6 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         combo_paket = new javax.swing.JComboBox<>();
         txt_cucian = new javax.swing.JTextField();
@@ -234,6 +236,17 @@ public class frm_kasus extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -403,7 +416,7 @@ public class frm_kasus extends javax.swing.JFrame {
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
                     .addComponent(txt_nama)
                     .addComponent(txt_no_telp))
                 .addGap(17, 17, 17))
@@ -424,6 +437,19 @@ public class frm_kasus extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Informasi"));
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 356, Short.MAX_VALUE)
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Data Pesanan"));
@@ -451,7 +477,7 @@ public class frm_kasus extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel6)
@@ -460,22 +486,22 @@ public class frm_kasus extends javax.swing.JFrame {
                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(txt_berat, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
-                        .addComponent(txt_cucian, javax.swing.GroupLayout.Alignment.LEADING))
-                    .addComponent(combo_paket, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(24, Short.MAX_VALUE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(txt_berat, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txt_cucian, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(combo_paket, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(117, 117, 117)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel10)
                             .addComponent(combo_paket, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -488,9 +514,11 @@ public class frm_kasus extends javax.swing.JFrame {
                             .addComponent(jLabel7)
                             .addComponent(txt_berat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(21, 21, 21)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(32, Short.MAX_VALUE))
+                        .addComponent(jLabel5))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(128, 128, 128)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -500,38 +528,45 @@ public class frm_kasus extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btn_tambah, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_ubah, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_hapus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btn_simpan, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_batal, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_keluar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jScrollPane3)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btn_tambah, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btn_ubah, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btn_hapus)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btn_simpan, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(286, 286, 286))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(btn_batal, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btn_keluar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -574,82 +609,149 @@ public class frm_kasus extends javax.swing.JFrame {
 
     private void btn_ubahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ubahActionPerformed
         // TODO add your handling code here:
-//        String nim = txt_nim.getText();
-//        String nama= txt_nama.getText();
-//        String tempat_lahir= txt_tmpt_lahir.getText();
-//        String alamat= txt_alamat.getText();
-//        // Start hanlding tanggal lahir
-//        String tampilan = "yyyy-MM-dd";
-//        SimpleDateFormat fm = new SimpleDateFormat(tampilan);
-//        String tgl_lahir = String.valueOf(fm.format(txt_tgl_lahir.getDate()));
-//        // END hanlding tanggal lahir
-//
-//        if((txt_nim.getText().isEmpty()) || (txt_tgl_lahir.getDate() == null)){
-//            JOptionPane.showMessageDialog(null, "data tidak boleh kosong, silahkan lengkapi");
-//            txt_nim.requestFocus();
-//        }else{
-//            try{
-//                Class.forName(driver);
-//                Connection kon = DriverManager.getConnection(database, user, pass);
-//                Statement stt = kon.createStatement();
-//                String SQL = "UPDATE t_mahasiswa "
-//                + "SET "
-//                + "nim = '" + nim + "', "
-//                + "nama = '" + nama + "', "
-//                + "ttl = '" + tempat_lahir + "', "
-//                + "tgl_lahir = '" + tgl_lahir + "', "
-//                + "alamat = '" + alamat + "' "
-//                + "WHERE nim = '" + tableModel.getValueAt(row, 0).toString() + "'";
-//                stt.executeUpdate(SQL);
-//                data[0] = nim;
-//                data[1] = nama;
-//                data[2] = tempat_lahir;
-//                data[3] = tgl_lahir;
-//                data[4] = alamat;
-//                tableModel.removeRow(row);
-//                tableModel.insertRow(row, data);
-//                stt.close();
-//                kon.close();
-//                membersihkan_teks();
-//                nonaktif_teks();
-//                aktif_btn_default();
-//            }catch(Exception ex){
-//                System.err.println(ex.getMessage());
-//            }
-//        }
+        String data[]=new String[8];
+        // START Validasi Empty Input
+        if(txt_nama.getText().isEmpty() || txt_no_telp.getText().isEmpty() ||
+            txt_alamat.getText().isEmpty() || combo_paket.getSelectedIndex() == 0 ||
+            txt_cucian.getText().isEmpty() || txt_berat.getText().isEmpty() ||
+            txt_keterangan.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Data tidak boleh kosong, Silahkan lengkapi");
+            if(txt_nama.getText().isEmpty()) txt_nama.requestFocus();
+            if(txt_no_telp.getText().isEmpty()) txt_no_telp.requestFocus();
+            if(txt_alamat.getText().isEmpty()) txt_alamat.requestFocus();
+            if(combo_paket.getSelectedIndex() == 0) combo_paket.requestFocus();
+            if(txt_cucian.getText().isEmpty()) txt_cucian.requestFocus();
+            if(txt_berat.getText().isEmpty()) txt_berat.requestFocus();
+            if(txt_keterangan.getText().isEmpty()) txt_keterangan.requestFocus();
+        // END Validasi Empty Input
+        }else{
+            try{
+                Class.forName(driver);
+                Connection kon = DriverManager.getConnection(database,user,pass);
+                Statement stt = kon.createStatement();
+ 
+                // Get Id_Pelanggan
+                String SQL_getId = "SELECT id_pelanggan FROM t_pelanggan "
+                            + "WHERE nama = '"+tableModel.getValueAt(row, 1).toString()+"'";
+                ResultSet res_getId = stt.executeQuery(SQL_getId);
+                while (res_getId.next()) {
+                    int getIdPelanggan = res_getId.getInt(1);
+//                    System.out.println("Id Pelanggan : " + getIdPelanggan);             //check result
+                    
+                    // Set nama, no telp, alamat form t_pelanggan
+                    String SQL_pelanggan = "UPDATE t_pelanggan "
+                            + "SET "
+                            + "nama = '"+txt_nama.getText()+"',"
+                            + "telepon = '"+txt_no_telp.getText()+"',"
+                            + "alamat = '"+txt_alamat.getText()+"' "
+                            + "WHERE id_pelanggan = '"+getIdPelanggan+"'";
+                    stt.executeUpdate(SQL_pelanggan);
+//                    System.out.println("Nama : " + txt_nama.getText());                 //check result
+
+                    // Get kd_paket
+//                    System.out.println(combo_paket.getSelectedItem());                  //check result
+                    String SQL_getKd_pkt = "SELECT kd_paket, harga_pkt FROM t_paket "
+                            + "WHERE nama_pkt = '"+combo_paket.getSelectedItem()+"'";
+                    ResultSet res_getKd_pkt = stt.executeQuery(SQL_getKd_pkt);
+                    while (res_getKd_pkt.next()) {
+                        String getKd_pkt = res_getKd_pkt.getString("kd_paket");
+//                        System.out.println("Kd Paket : " + getKd_pkt);                  //check result   
+
+                        int harga_pkt = res_getKd_pkt.getInt("harga_pkt");
+//                        System.out.println("Harga paket : " + harga_pkt);               //check result
+                        int berat = Integer.valueOf(txt_berat.getText());
+//                        System.out.println("Berat : " + berat);                         //check result
+                        total_harga =  berat * harga_pkt;
+//                        System.out.println("Total Harga : " + total_harga);             //check result
+
+                        String SQL_setId = "UPDATE t_transaksi "
+                                + "SET "
+                                + "kd_paket = '"+getKd_pkt+"',"
+                                + "jmlh_cucian = '"+txt_cucian.getText()+"',"
+                                + "total_berat = '"+txt_berat.getText()+"',"
+                                + "total_harga = '"+total_harga+"',"
+                                + "tgl_masuk = CURRENT_DATE,"
+                                + "keterangan = '"+txt_keterangan.getText()+"' "
+                                + "WHERE id_pelanggan = '"+getIdPelanggan+"'";
+                        stt.executeUpdate(SQL_setId);
+                        
+                        String SQL = "SELECT id_transaksi, nama, nama_pkt, jmlh_cucian, "
+                            + "total_berat, total_harga, tgl_masuk, keterangan\n" +
+                            "FROM t_transaksi\n" +
+                            "JOIN t_pelanggan ON t_pelanggan.id_pelanggan = t_transaksi.id_pelanggan\n" +
+                            "JOIN t_paket ON t_paket.kd_paket = t_transaksi.kd_paket\n" +
+                            "WHERE t_transaksi.id_pelanggan = '"+getIdPelanggan+"'";
+                        ResultSet res = stt.executeQuery(SQL);
+                        while(res.next()){
+                            data[0] = res.getString(1);
+                            data[1] = res.getString(2);
+                            data[2] = res.getString(3);
+                            data[3] = res.getString(4);
+                            data[4] = res.getString(5);
+                            data[5] = res.getString(6);
+                            data[6] = res.getString(7);
+                            data[7] = res.getString(8);
+                            tableModel.removeRow(row);
+                            tableModel.insertRow(row, data);
+                        }
+                        res.close();
+                        membersihkan_teks();
+                        nonaktif_teks();
+                        aktif_btn_default();          // proses berhasil sampai sini
+                    }
+                    res_getKd_pkt.close();
+                }
+                res_getId.close();
+                stt.close();
+                kon.close();
+            }catch(Exception ex){
+//                JOptionPane.showMessageDialog(null,
+//                    ex.getMessage(),"error",
+//                    JOptionPane.INFORMATION_MESSAGE
+//                );
+            }
+        }
     }//GEN-LAST:event_btn_ubahActionPerformed
 
     private void btn_hapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_hapusActionPerformed
         // TODO add your handling code here:
-//        try{
-//            Class.forName(driver);
-//            Connection kon = DriverManager.getConnection(database, user, pass);
-//            Statement stt = kon.createStatement();
-//            String SQL = "DELETE FROM t_mahasiswa WHERE "
-//            + "nim='"+tableModel.getValueAt(row, 0).toString()+"'";
-//            stt.executeUpdate(SQL);
-//            tableModel.removeRow(row);
-//            stt.close();
-//            kon.close();
-//            membersihkan_teks();
-//            aktif_btn_default();
-//
-//        }catch(Exception ex){
-//            System.err.println(ex.getMessage());
-//        }
+        try{
+            Class.forName(driver);
+            Connection kon = DriverManager.getConnection(database, user, pass);
+            Statement stt = kon.createStatement();
+            String SQL = "DELETE FROM t_transaksi WHERE "
+            + "id_transaksi='"+tableModel.getValueAt(row, 0).toString()+"'";
+            stt.executeUpdate(SQL);
+            tableModel.removeRow(row);
+            stt.close();
+            kon.close();
+            membersihkan_teks();
+            nonaktif_teks();
+            aktif_btn_default();
+
+        }catch(Exception ex){
+            System.err.println(ex.getMessage());
+        }
     }//GEN-LAST:event_btn_hapusActionPerformed
 
     private void btn_simpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_simpanActionPerformed
         // TODO add your handling code here:
-        String data[]=new String[18];
+        String data[]=new String[8];
         // START Validasi Empty Input
-//        if(combo_mk.getSelectedIndex() == 0 || txt_persen_absen.getText().isEmpty() ||
-//            txt_uas.getText().isEmpty() ){
-//            JOptionPane.showMessageDialog(null, "Data tidak boleh kosong, Silahkan lengkapi");
-//            if(combo_mk.getSelectedIndex() == 0) combo_mk.requestFocus();
-//            if(txt_persen_absen.getText().isEmpty()) txt_persen_absen.requestFocus();
+        if(txt_nama.getText().isEmpty() || txt_no_telp.getText().isEmpty() ||
+            txt_alamat.getText().isEmpty() || combo_paket.getSelectedIndex() == 0 ||
+            txt_cucian.getText().isEmpty() || txt_berat.getText().isEmpty() ||
+            txt_keterangan.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Data tidak boleh kosong, Silahkan lengkapi");
+            if(txt_nama.getText().isEmpty()) txt_nama.requestFocus();
+            if(txt_no_telp.getText().isEmpty()) txt_no_telp.requestFocus();
+            if(txt_alamat.getText().isEmpty()) txt_alamat.requestFocus();
+            if(combo_paket.getSelectedIndex() == 0) combo_paket.requestFocus();
+            if(txt_cucian.getText().isEmpty()) txt_cucian.requestFocus();
+            if(txt_berat.getText().isEmpty()) txt_berat.requestFocus();
+            if(txt_keterangan.getText().isEmpty()) txt_keterangan.requestFocus();
         // END Validasi Empty Input
-//        }else{
+        }else{
             try{
                 Class.forName(driver);
                 Connection kon = DriverManager.getConnection(database,user,pass);
@@ -662,7 +764,7 @@ public class frm_kasus extends javax.swing.JFrame {
                         + "'"+txt_no_telp.getText()+"',"
                         + "'"+txt_alamat.getText()+"')";
                 stt.executeUpdate(SQL_pelanggan);
-                data[1] = txt_nama.getText();
+//                System.out.println("Nama : " + txt_nama.getText());                      //check result
                 
                 // Get Id_Pelanggan
                 String SQL_getId = "SELECT id_pelanggan FROM t_pelanggan "
@@ -670,48 +772,70 @@ public class frm_kasus extends javax.swing.JFrame {
                 ResultSet res_getId = stt.executeQuery(SQL_getId);
                 while (res_getId.next()) {
                     int getIdPelanggan = res_getId.getInt(1);
-                    String SQL_setId = "INSERT INTO t_transaksi (id_Pelanggan) "
-                            + "VALUES ('"+getIdPelanggan+"')";
-                    
+//                    System.out.println("Id Pelanggan : " + getIdPelanggan);             //check result
                     
                     // Get kd_paket
-                    String SQL_getKd_pkt = "SELECT * FROM t_paket "
+//                    System.out.println(combo_paket.getSelectedItem());                  //check result
+                    String SQL_getKd_pkt = "SELECT kd_paket, harga_pkt FROM t_paket "
                             + "WHERE nama_pkt = '"+combo_paket.getSelectedItem()+"'";
                     ResultSet res_getKd_pkt = stt.executeQuery(SQL_getKd_pkt);
-                    
                     while (res_getKd_pkt.next()) {
                         String getKd_pkt = res_getKd_pkt.getString("kd_paket");
-                        String SQL_setKd_pkt = "INSERT INTO t_transaksi (kd_paket) "
-                                + "VALUES ('"+getKd_pkt+"')";
+//                        System.out.println("Kd Paket : " + getKd_pkt);                  //check result   
 
                         int harga_pkt = res_getKd_pkt.getInt("harga_pkt");
+//                        System.out.println("Harga paket : " + harga_pkt);               //check result
                         int berat = Integer.valueOf(txt_berat.getText());
+//                        System.out.println("Berat : " + berat);                         //check result
                         total_harga =  berat * harga_pkt;
+//                        System.out.println("Total Harga : " + total_harga);             //check result
 
-                        String SQL = "INSERT INTO t_transaksi (jmlh_cucian, total_berat, "
-                            + "total_harga, tgl_masuk, keterangan) "
-                            + "VALUES "
-                            + "('"+txt_cucian.getText()+"',"
-                            + "'"+txt_berat.getText()+"',"
-                            + "'"+total_harga+"',"
-                            + "'"+txt_keterangan.getText()+"')";
+                        String SQL_setId = "INSERT INTO t_transaksi (id_Pelanggan, kd_paket, "
+                                + "jmlh_cucian, total_berat, total_harga, keterangan) "
+                                + "VALUES "
+                                + "('"+getIdPelanggan+"',"
+                                + "'"+getKd_pkt+"',"
+                                + "'"+txt_cucian.getText()+"',"
+                                + "'"+txt_berat.getText()+"',"
+                                + "'"+total_harga+"',"
+                                + "'"+txt_keterangan.getText()+"')";
+                        stt.executeUpdate(SQL_setId);
+                        
+                        String SQL = "SELECT id_transaksi, nama, nama_pkt, jmlh_cucian, "
+                            + "total_berat, total_harga, tgl_masuk, keterangan\n" +
+                            "FROM t_transaksi\n" +
+                            "JOIN t_pelanggan ON t_pelanggan.id_pelanggan = t_transaksi.id_pelanggan\n" +
+                            "JOIN t_paket ON t_paket.kd_paket = t_transaksi.kd_paket\n" +
+                            "WHERE t_transaksi.id_pelanggan = '"+getIdPelanggan+"'";
+                        ResultSet res = stt.executeQuery(SQL);
+                        while(res.next()){
+                            data[0] = res.getString(1);
+                            data[1] = res.getString(2);
+                            data[2] = res.getString(3);
+                            data[3] = res.getString(4);
+                            data[4] = res.getString(5);
+                            data[5] = res.getString(6);
+                            data[6] = res.getString(7);
+                            data[7] = res.getString(8);
+                            tableModel.insertRow(0, data);
+                        }
+                        res.close();
+                        membersihkan_teks();
+                        nonaktif_teks();
+                        aktif_btn_default();          // proses berhasil sampai sini
                     }
-                    
+                    res_getKd_pkt.close();
                 }
-                tableModel.insertRow(0, data);
                 res_getId.close();
                 stt.close();
                 kon.close();
-                membersihkan_teks();
-                nonaktif_teks();
-                aktif_btn_default();
             }catch(Exception ex){
-                JOptionPane.showMessageDialog(null,
-                    ex.getMessage(),"error",
-                    JOptionPane.INFORMATION_MESSAGE
-                );
+//                JOptionPane.showMessageDialog(null,
+//                    ex.getMessage(),"error",
+//                    JOptionPane.INFORMATION_MESSAGE
+//                );
             }
-//        }
+        }
     }//GEN-LAST:event_btn_simpanActionPerformed
 
     private void btn_batalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_batalActionPerformed
@@ -832,6 +956,8 @@ public class frm_kasus extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
