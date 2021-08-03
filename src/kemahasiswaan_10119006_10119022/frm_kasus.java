@@ -658,7 +658,6 @@ public class frm_kasus extends javax.swing.JFrame {
                                 + "jmlh_cucian = '"+txt_cucian.getText()+"',"
                                 + "total_berat = '"+txt_berat.getText()+"',"
                                 + "total_harga = '"+total_harga+"',"
-                                + "tgl_masuk = CURRENT_DATE,"
                                 + "keterangan = '"+txt_keterangan.getText()+"' "
                                 + "WHERE id_pelanggan = '"+getIdPelanggan+"'";
                         stt.executeUpdate(SQL_setId);
@@ -685,7 +684,8 @@ public class frm_kasus extends javax.swing.JFrame {
                         res.close();
                         membersihkan_teks();
                         nonaktif_teks();
-                        aktif_btn_default();          // proses berhasil sampai sini
+                        aktif_btn_default();          
+                        JOptionPane.showMessageDialog(null, "Data berhasil diubah");    // proses berhasil sampai sini
                     }
                     res_getKd_pkt.close();
                 }
@@ -704,19 +704,24 @@ public class frm_kasus extends javax.swing.JFrame {
     private void btn_hapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_hapusActionPerformed
         // TODO add your handling code here:
         try{
-            Class.forName(driver);
-            Connection kon = DriverManager.getConnection(database, user, pass);
-            Statement stt = kon.createStatement();
-            String SQL = "DELETE FROM t_transaksi WHERE "
-            + "id_transaksi='"+tableModel.getValueAt(row, 0).toString()+"'";
-            stt.executeUpdate(SQL);
-            tableModel.removeRow(row);
-            stt.close();
-            kon.close();
-            membersihkan_teks();
-            nonaktif_teks();
-            aktif_btn_default();
-
+            if (JOptionPane.showConfirmDialog(null, "Apakah Anda Yakin akan menghapus ?", "Peringatan",
+            JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                Class.forName(driver);
+                Connection kon = DriverManager.getConnection(database, user, pass);
+                Statement stt = kon.createStatement();
+                String SQL = "DELETE FROM t_transaksi WHERE "
+                + "id_transaksi='"+tableModel.getValueAt(row, 0).toString()+"'";
+                stt.executeUpdate(SQL);
+                tableModel.removeRow(row);
+                stt.close();
+                kon.close();
+                membersihkan_teks();
+                nonaktif_teks();
+                aktif_btn_default();
+                JOptionPane.showMessageDialog(null, "Data berhasil dihapus");
+            } else {
+                // no option
+            }
         }catch(Exception ex){
             System.err.println(ex.getMessage());
         }
@@ -810,7 +815,8 @@ public class frm_kasus extends javax.swing.JFrame {
                         res.close();
                         membersihkan_teks();
                         nonaktif_teks();
-                        aktif_btn_default();          // proses berhasil sampai sini
+                        aktif_btn_default();          
+                        JOptionPane.showMessageDialog(null, "Data berhasil disimpan");      // proses berhasil sampai sini
                     }
                     res_getKd_pkt.close();
                 }

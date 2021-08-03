@@ -385,16 +385,17 @@ public class frm_matkul extends javax.swing.JFrame {
                 String SQL = "INSERT INTO t_mata_kuliah(kd_mk,nama_mk) "
                         + "VALUES "
                         + "( '"+txt_kode_matkul.getText()+"',"
-                        + " '"+txt_nama_matkul.getText()+"' )";
+                        + " '"+txt_nama_matkul.getText().toLowerCase()+"' )";
                 stt.executeUpdate(SQL);
                 data[0] = txt_kode_matkul.getText();
-                data[1] = txt_nama_matkul.getText();
+                data[1] = txt_nama_matkul.getText().toLowerCase();
                 tableModel.insertRow(0, data);
                 stt.close();
                 kon.close();
                 membersihkan_teks();
                 nonaktif_teks();
                 aktif_btn_default();
+                JOptionPane.showMessageDialog(null, "Data berhasil disimpan");
             }catch(Exception ex){    
                 JOptionPane.showMessageDialog(null, 
                         ex.getMessage(),"error",
@@ -422,18 +423,24 @@ public class frm_matkul extends javax.swing.JFrame {
         // TODO add your handling code here:
         // TODO add your handling code here:
         try{
-            Class.forName(driver);
-            Connection kon = DriverManager.getConnection(database, user, pass);
-            Statement stt = kon.createStatement();
-            String SQL = "DELETE FROM t_mata_kuliah WHERE "
-                        + "kd_mk='"+tableModel.getValueAt(row, 0).toString()+"'";
-            stt.executeUpdate(SQL);
-            tableModel.removeRow(row);
-            stt.close();
-            kon.close();
-            membersihkan_teks();
-            aktif_btn_default();
-            nonaktif_teks();
+            if (JOptionPane.showConfirmDialog(null, "Apakah Anda Yakin akan menghapus ?", "Peringatan",
+            JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                Class.forName(driver);
+                Connection kon = DriverManager.getConnection(database, user, pass);
+                Statement stt = kon.createStatement();
+                String SQL = "DELETE FROM t_mata_kuliah WHERE "
+                            + "kd_mk='"+tableModel.getValueAt(row, 0).toString()+"'";
+                stt.executeUpdate(SQL);
+                tableModel.removeRow(row);
+                stt.close();
+                kon.close();
+                membersihkan_teks();
+                aktif_btn_default();
+                nonaktif_teks();
+                JOptionPane.showMessageDialog(null, "Data berhasil dihapus");
+            } else {
+                // no option
+            }
         }catch(Exception ex){    
             System.err.println(ex.getMessage());
         }
@@ -442,10 +449,10 @@ public class frm_matkul extends javax.swing.JFrame {
     private void btn_ubahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ubahActionPerformed
         // TODO add your handling code here:
         String kode_matkul = txt_kode_matkul.getText();
-        String nama_matkul = txt_nama_matkul.getText();
+        String nama_matkul = txt_nama_matkul.getText().toLowerCase();
         
         if((txt_kode_matkul.getText().isEmpty()) || (txt_nama_matkul.getText().isEmpty())){
-            JOptionPane.showMessageDialog(null, "data tidak boleh kosong, silahkan lengkapi");
+            JOptionPane.showMessageDialog(null, "Data tidak boleh kosong, Silahkan lengkapi");
             if(txt_kode_matkul.getText().isEmpty())txt_kode_matkul.requestFocus();
             if(txt_nama_matkul.getText().isEmpty())txt_nama_matkul.requestFocus();
         }else{
@@ -468,6 +475,7 @@ public class frm_matkul extends javax.swing.JFrame {
                 membersihkan_teks();
                 nonaktif_teks();
                 aktif_btn_default();
+                JOptionPane.showMessageDialog(null, "Data berhasil diubah");
             }catch(Exception ex){    
                 System.err.println(ex.getMessage());
             }
@@ -500,8 +508,8 @@ public class frm_matkul extends javax.swing.JFrame {
             Connection kon = DriverManager.getConnection(database, user, pass);
             Statement stt = kon.createStatement();
             String SQL = "SELECT * FROM t_mata_kuliah "
-                    + "WHERE nama_mk LIKE '%"+txt_cari.getText()+"%' "
-                    + "OR kd_mk LIKE '%"+txt_cari.getText()+"%'";
+                    + "WHERE nama_mk LIKE '%"+txt_cari.getText().toLowerCase()+"%' "
+                    + "OR kd_mk LIKE '%"+txt_cari.getText().toLowerCase()+"%'";
             ResultSet res = stt.executeQuery(SQL);
             while(res.next()){
                 data[0] = res.getString(1);

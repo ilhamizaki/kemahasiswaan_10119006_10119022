@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 02 Agu 2021 pada 11.36
+-- Waktu pembuatan: 03 Agu 2021 pada 17.12
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.2.34
 
@@ -65,11 +65,12 @@ CREATE TABLE `t_mata_kuliah` (
 --
 
 INSERT INTO `t_mata_kuliah` (`kd_mk`, `nama_mk`) VALUES
-('IF200012', 0x50656d6f6772616d616e204461736172),
-('IF34348', 0x50656d6f6772616d616e204c616e6a7574),
-('IF37325P', 0x4b6f6d70757465722047726166696b),
-('IF99191', 0x416c676f7269746d61),
-('IF99192', 0x54656f72656d6120426168617361);
+('IF20012', 0x70656d6f6772616d616e206461736172),
+('IF24234', 0x70656d6f6772616d616e2076697375616c),
+('IF34348', 0x70656d6f6772616d616e206c616e6a7574),
+('IF37325', 0x6b6f6d70757465722067726166696b),
+('IF99191', 0x616c676f7269746d61),
+('IF99192', 0x74656f72656d6120626168617361);
 
 -- --------------------------------------------------------
 
@@ -103,13 +104,12 @@ CREATE TABLE `t_nilai` (
 
 INSERT INTO `t_nilai` (`kd_nilai`, `nim`, `kd_mk`, `kehadiran`, `tugas1`, `tugas2`, `tugas3`, `uts`, `uas`, `nilai_absen`, `nilai_tugas`, `nilai_uts`, `nilai_uas`, `nilai_akhir`, `index`, `ket`, `angkatan`) VALUES
 (28, '10102104', 'IF34348', 13, 45, 67, 87, 90, 55, 4.64, 16.58, 27, 22, 70.23, 'B', 'Lulus', 2021),
-(30, '10105121', 'IF37325P', 13, 56, 78, 34, 90, 78, 4.64, 14, 27, 31.2, 76.84, 'B', 'Lulus', 2021),
 (32, '10102103', 'IF99192', 10, 78, 90, 56, 67, 89, 3.57, 18.67, 20.1, 35.6, 77.94, 'B', 'Tidak Lulus', 2021),
 (33, '10105122', 'IF99191', 14, 89, 67, 90, 89, 78, 5, 20.5, 26.7, 31.2, 83.4, 'A', 'Lulus', 2021),
 (34, '10105123', 'IF34348', 12, 56, 89, 67, 56, 67, 4.29, 17.67, 16.8, 26.8, 65.55, 'C', 'Lulus', 2021),
 (35, '10102102', 'IF99191', 11, 56, 98, 45, 45, 34, 3.93, 16.58, 13.5, 13.6, 47.61, 'D', 'Tidak Lulus', 2021),
-(36, '10105120', 'IF200012', 9, 78, 56, 90, 90, 89, 3.21, 18.67, 27, 35.6, 84.48, 'A', 'Tidak Lulus', 2021),
-(37, '10102103', 'IF37325P', 14, 56, 89, 87, 89, 90, 5, 19.33, 26.7, 36, 87.03, 'A', 'Lulus', 2021);
+(37, '10102103', 'IF37325', 14, 56, 89, 87, 89, 90, 5, 19.33, 26.7, 36, 87.03, 'A', 'Lulus', 2021),
+(41, '10105122', 'IF24234', 14, 89, 67, 90, 78, 98, 5, 20.5, 23.4, 39.2, 88.1, 'A', 'Lulus', 2021);
 
 -- --------------------------------------------------------
 
@@ -145,12 +145,12 @@ CREATE TABLE `t_nilai_akhir` (
 
 INSERT INTO `t_nilai_akhir` (`kd_nilai_akhir`, `kd_mk`, `persen_absen`, `persen_tugas`, `persen_uts`, `persen_uas`, `kehadiran`, `tugas1`, `tugas2`, `tugas3`, `uts`, `uas`, `nilai_absen`, `nilai_tugas`, `nilai_uts`, `nilai_uas`, `nilai_akhir`, `index`, `ket`) VALUES
 (1, 'IF99191', 25, 25, 25, 25, 13, 45, 43, 34, 45, 30, 23.21, 10.17, 11.25, 7.5, 52.13, 'D', 'Tidak Lulus'),
-(2, 'IF37325P', 5, 15, 30, 40, 10, 89, 56, 78, 56, 78, 3.57, 11.15, 16.8, 31.2, 62.72, 'C', 'Tidak Lulus'),
-(3, 'IF200012', 5, 15, 30, 40, 14, 78, 56, 89, 78, 90, 5, 11.15, 23.4, 36, 75.55, 'B', 'Lulus'),
+(2, 'IF37325', 5, 15, 30, 40, 10, 89, 56, 78, 56, 78, 3.57, 11.15, 16.8, 31.2, 62.72, 'C', 'Tidak Lulus'),
+(3, 'IF20012', 5, 15, 30, 40, 14, 78, 56, 89, 78, 90, 5, 11.15, 23.4, 36, 75.55, 'B', 'Lulus'),
 (5, 'IF99192', 10, 20, 30, 40, 12, 67, 45, 89, 90, 78, 8.57, 13.4, 27, 31.2, 80.17, 'A', 'Lulus'),
 (6, 'IF34348', 10, 25, 25, 40, 11, 45, 67, 78, 90, 89, 7.86, 15.83, 22.5, 35.6, 81.79, 'A', 'Lulus'),
 (7, 'IF99191', 25, 25, 25, 25, 13, 45, 43, 34, 45, 30, 23.21, 10.17, 11.25, 7.5, 52.13, 'D', 'Tidak Lulus'),
-(8, 'IF200012', 5, 15, 40, 40, 14, 56, 87, 45, 89, 67, 5, 9.4, 35.6, 26.8, 76.8, 'B', 'Lulus');
+(8, 'IF20012', 5, 15, 30, 40, 14, 78, 56, 89, 78, 90, 5, 11.15, 23.4, 36, 75.55, 'B', 'Lulus');
 
 -- --------------------------------------------------------
 
@@ -230,6 +230,27 @@ INSERT INTO `t_transaksi` (`id_transaksi`, `id_pelanggan`, `jmlh_cucian`, `kd_pa
 (17293, 11116, 6, 'P2', 3, 21000, '2021-08-02', 'Jeans'),
 (17309, 11133, 4, 'P1', 3, 18000, '2021-08-02', 'Baju Renang');
 
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `t_user`
+--
+
+CREATE TABLE `t_user` (
+  `id_user` int(4) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `t_user`
+--
+
+INSERT INTO `t_user` (`id_user`, `username`, `password`) VALUES
+(1106, 'admin', 'admin'),
+(1107, 'ilham', 'ilham'),
+(1112, 'zaki', 'zaki');
+
 --
 -- Indexes for dumped tables
 --
@@ -282,6 +303,12 @@ ALTER TABLE `t_transaksi`
   ADD KEY `kd_paket_FK1` (`kd_paket`);
 
 --
+-- Indeks untuk tabel `t_user`
+--
+ALTER TABLE `t_user`
+  ADD PRIMARY KEY (`id_user`);
+
+--
 -- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
@@ -289,7 +316,7 @@ ALTER TABLE `t_transaksi`
 -- AUTO_INCREMENT untuk tabel `t_nilai`
 --
 ALTER TABLE `t_nilai`
-  MODIFY `kd_nilai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `kd_nilai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_nilai_akhir`
@@ -308,6 +335,12 @@ ALTER TABLE `t_pelanggan`
 --
 ALTER TABLE `t_transaksi`
   MODIFY `id_transaksi` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17310;
+
+--
+-- AUTO_INCREMENT untuk tabel `t_user`
+--
+ALTER TABLE `t_user`
+  MODIFY `id_user` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1114;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)

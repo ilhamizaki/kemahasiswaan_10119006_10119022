@@ -499,6 +499,7 @@ public class frm_mhs extends javax.swing.JFrame {
                 btn_simpan.setEnabled(false);
                 nonaktif_teks();
                 aktif_btn_default();
+                JOptionPane.showMessageDialog(null, "Data berhasil disimpan");
             }catch(Exception ex){    
                 JOptionPane.showMessageDialog(null, 
                         ex.getMessage(),"error",
@@ -563,6 +564,7 @@ public class frm_mhs extends javax.swing.JFrame {
                 membersihkan_teks();
                 nonaktif_teks();
                 aktif_btn_default();
+                JOptionPane.showMessageDialog(null, "Data berhasil diubah");
             }catch(Exception ex){    
                 System.err.println(ex.getMessage());
             }
@@ -572,18 +574,23 @@ public class frm_mhs extends javax.swing.JFrame {
     private void btn_hapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_hapusActionPerformed
         // TODO add your handling code here:
         try{
-            Class.forName(driver);
-            Connection kon = DriverManager.getConnection(database, user, pass);
-            Statement stt = kon.createStatement();
-            String SQL = "DELETE FROM t_mahasiswa WHERE "
-                        + "nim='"+tableModel.getValueAt(row, 0).toString()+"'";
-            stt.executeUpdate(SQL);
-            tableModel.removeRow(row);
-            stt.close();
-            kon.close();
-            membersihkan_teks();
-            aktif_btn_default();
-            
+            if (JOptionPane.showConfirmDialog(null, "Apakah Anda Yakin akan menghapus ?", "Peringatan",
+            JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                Class.forName(driver);
+                Connection kon = DriverManager.getConnection(database, user, pass);
+                Statement stt = kon.createStatement();
+                String SQL = "DELETE FROM t_mahasiswa WHERE "
+                            + "nim='"+tableModel.getValueAt(row, 0).toString()+"'";
+                stt.executeUpdate(SQL);
+                tableModel.removeRow(row);
+                stt.close();
+                kon.close();
+                membersihkan_teks();
+                aktif_btn_default();
+                JOptionPane.showMessageDialog(null, "Data berhasil dihapus");
+            } else {
+                // no option
+            }
         }catch(Exception ex){    
             System.err.println(ex.getMessage());
         }

@@ -18,8 +18,11 @@ public class kemahasiswaan_10119006_10119022 {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        frm_utama utama = new frm_utama();
-        utama.setVisible(true);
+        frm_login login = new frm_login();
+        login.setVisible(true);
+        
+//        frm_utama utama = new frm_utama();
+//        utama.setVisible(true);
         
     }
     

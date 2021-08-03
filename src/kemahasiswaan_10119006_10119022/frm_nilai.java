@@ -150,6 +150,7 @@ public class frm_nilai extends javax.swing.JFrame {
         txt_tugas3.setText("");
         txt_uts.setText("");
         txt_uas.setText("");
+        txt_angkatan.setYear(Year.now().getValue());
     }
     public void nonaktif_teks(){
         combo_nama.setEnabled(false);
@@ -659,51 +660,57 @@ public class frm_nilai extends javax.swing.JFrame {
         // END Validasi Empty Input
         }else{
             try{
-                hitung_nilai();
-                Class.forName(driver);
-                Connection kon = DriverManager.getConnection(database, user, pass);
-                Statement stt = kon.createStatement();
-                String SQL = "UPDATE t_nilai "
-                        + "SET "
-                        + "nim = '" + txt_nim.getText() + "', "
-                        + "kd_mk = '" + txt_kd_mk.getText() + "', "
-                        + "kehadiran = '" + txt_kehadiran.getText() + "', "
-                        + "tugas1 = '" + txt_tugas1.getText() + "', "
-                        + "tugas2 = '" + txt_tugas2.getText() + "', "
-                        + "tugas3 = '" + txt_tugas3.getText() + "', "
-                        + "uts = '" + txt_uts.getText() + "', "
-                        + "uas = '" + txt_uas.getText() + "', "
-                        + "nilai_absen = '" + String.format("%.2f", n_absen) + "', "
-                        + "nilai_tugas = '" + String.format("%.2f", n_tugas) + "', "
-                        + "nilai_uts = '" + String.format("%.2f", n_uts) + "', "
-                        + "nilai_uas = '" + String.format("%.2f", n_uas) + "', "
-                        + "nilai_akhir = '" + String.format("%.2f", n_akhir) + "', "
-                        + "t_nilai.index = '" + index + "', "
-                        + "ket = '" + keterangan + "' "
-                        + "WHERE nim = '" + txt_nim.getText() + "'";
-                stt.executeUpdate(SQL);
-                data[0] = combo_nama.getSelectedItem().toString();
-                data[1] = combo_mk.getSelectedItem().toString();
-                data[2] = txt_kehadiran.getText();
-                data[3] = txt_tugas1.getText();
-                data[4] = txt_tugas2.getText();
-                data[5] = txt_tugas3.getText();
-                data[6] = txt_uts.getText();
-                data[7] = txt_uas.getText();
-                data[8] = String.format("%.2f", n_absen);
-                data[9] = String.format("%.2f", n_tugas);
-                data[10] = String.format("%.2f", n_uts);
-                data[11] = String.format("%.2f", n_uas);
-                data[12] = String.format("%.2f", n_akhir);
-                data[13] = Character.toString(index);;
-                data[14] = keterangan;
-                tableModel.removeRow(row);
-                tableModel.insertRow(row, data);
-                stt.close();
-                kon.close();
-                membersihkan_teks();
-                nonaktif_teks();
-                aktif_btn_default();
+                if(Integer.valueOf(txt_kehadiran.getText()) > 14) {
+                    JOptionPane.showMessageDialog(null, "Kehadiran melebihi Maksimal (Max. 14 Pertemuan)");
+                    txt_kehadiran.requestFocus();
+                } else {
+                    hitung_nilai();
+                    Class.forName(driver);
+                    Connection kon = DriverManager.getConnection(database, user, pass);
+                    Statement stt = kon.createStatement();
+                    String SQL = "UPDATE t_nilai "
+                            + "SET "
+                            + "nim = '" + txt_nim.getText() + "', "
+                            + "kd_mk = '" + txt_kd_mk.getText() + "', "
+                            + "kehadiran = '" + txt_kehadiran.getText() + "', "
+                            + "tugas1 = '" + txt_tugas1.getText() + "', "
+                            + "tugas2 = '" + txt_tugas2.getText() + "', "
+                            + "tugas3 = '" + txt_tugas3.getText() + "', "
+                            + "uts = '" + txt_uts.getText() + "', "
+                            + "uas = '" + txt_uas.getText() + "', "
+                            + "nilai_absen = '" + String.format("%.2f", n_absen) + "', "
+                            + "nilai_tugas = '" + String.format("%.2f", n_tugas) + "', "
+                            + "nilai_uts = '" + String.format("%.2f", n_uts) + "', "
+                            + "nilai_uas = '" + String.format("%.2f", n_uas) + "', "
+                            + "nilai_akhir = '" + String.format("%.2f", n_akhir) + "', "
+                            + "t_nilai.index = '" + index + "', "
+                            + "ket = '" + keterangan + "' "
+                            + "WHERE nim = '" + txt_nim.getText() + "'";
+                    stt.executeUpdate(SQL);
+                    data[0] = combo_nama.getSelectedItem().toString();
+                    data[1] = combo_mk.getSelectedItem().toString();
+                    data[2] = txt_kehadiran.getText();
+                    data[3] = txt_tugas1.getText();
+                    data[4] = txt_tugas2.getText();
+                    data[5] = txt_tugas3.getText();
+                    data[6] = txt_uts.getText();
+                    data[7] = txt_uas.getText();
+                    data[8] = String.format("%.2f", n_absen);
+                    data[9] = String.format("%.2f", n_tugas);
+                    data[10] = String.format("%.2f", n_uts);
+                    data[11] = String.format("%.2f", n_uas);
+                    data[12] = String.format("%.2f", n_akhir);
+                    data[13] = Character.toString(index);;
+                    data[14] = keterangan;
+                    tableModel.removeRow(row);
+                    tableModel.insertRow(row, data);
+                    stt.close();
+                    kon.close();
+                    membersihkan_teks();
+                    nonaktif_teks();
+                    aktif_btn_default();
+                    JOptionPane.showMessageDialog(null, "Data berhasil diubah");
+                }
             }catch(Exception ex){    
                 System.err.println(ex.getMessage());
             }
@@ -713,19 +720,24 @@ public class frm_nilai extends javax.swing.JFrame {
     private void btn_hapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_hapusActionPerformed
         // TODO add your handling code here:
         try{
-            Class.forName(driver);
-            Connection kon = DriverManager.getConnection(database, user, pass);
-            Statement stt = kon.createStatement();
-            String SQL = "DELETE FROM t_nilai WHERE "
-                        + "nim='"+txt_nim.getText()+"'";
-            stt.executeUpdate(SQL);
-            tableModel.removeRow(row);
-            stt.close();
-            kon.close();
-            membersihkan_teks();
-            nonaktif_teks();
-            aktif_btn_default();
-            
+            if (JOptionPane.showConfirmDialog(null, "Apakah Anda Yakin akan menghapus ?", "Peringatan",
+            JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                Class.forName(driver);
+                Connection kon = DriverManager.getConnection(database, user, pass);
+                Statement stt = kon.createStatement();
+                String SQL = "DELETE FROM t_nilai WHERE "
+                            + "nim='"+txt_nim.getText()+"'";
+                stt.executeUpdate(SQL);
+                tableModel.removeRow(row);
+                stt.close();
+                kon.close();
+                membersihkan_teks();
+                nonaktif_teks();
+                aktif_btn_default();
+                JOptionPane.showMessageDialog(null, "Data berhasil dihapus");
+            } else {
+                // no option
+            }
         }catch(Exception ex){    
             System.err.println(ex.getMessage());
         }
@@ -752,52 +764,58 @@ public class frm_nilai extends javax.swing.JFrame {
         // END Validasi Empty Input
         }else{
             try{
-                hitung_nilai();
-                Class.forName(driver);
-                Connection kon = DriverManager.getConnection(database,user,pass);
-                Statement stt = kon.createStatement();
-                String SQL = "INSERT INTO t_nilai(nim, kd_mk, kehadiran, tugas1, tugas2, tugas3, "
-                        + "uts, uas, nilai_absen, nilai_tugas, nilai_uts, nilai_uas, "
-                        + "nilai_akhir,t_nilai.index, ket, angkatan)\n" 
-                        + "VALUES "
-                        + "( '"+txt_nim.getText()+"',"
-                        + " '"+txt_kd_mk.getText()+"',"
-                        + " '"+txt_kehadiran.getText()+"',"
-                        + " '"+txt_tugas1.getText()+"',"
-                        + " '"+txt_tugas2.getText()+"',"
-                        + " '"+txt_tugas3.getText()+"',"
-                        + " '"+txt_uts.getText()+"',"
-                        + " '"+txt_uas.getText()+"',"
-                        + " '"+String.format("%.2f", n_absen)+"',"
-                        + " '"+String.format("%.2f", n_tugas)+"',"
-                        + " '"+String.format("%.2f", n_uts)+"',"
-                        + " '"+String.format("%.2f", n_uas)+"',"
-                        + " '"+String.format("%.2f", n_akhir)+"',"
-                        + " '"+index+"',"
-                        + " '"+keterangan+"',"
-                        + " '"+txt_angkatan.getYear()+"' )";
-                stt.executeUpdate(SQL);
-                data[0] = combo_nama.getSelectedItem().toString();
-                data[1] = combo_mk.getSelectedItem().toString();
-                data[2] = txt_kehadiran.getText();
-                data[3] = txt_tugas1.getText();
-                data[4] = txt_tugas2.getText();
-                data[5] = txt_tugas3.getText();
-                data[6] = txt_uts.getText();
-                data[7] = txt_uas.getText();
-                data[8] = String.format("%.2f", n_absen);
-                data[9] = String.format("%.2f", n_tugas);
-                data[10] = String.format("%.2f", n_uts);
-                data[11] = String.format("%.2f", n_uas);
-                data[12] = String.format("%.2f", n_akhir);
-                data[13] = Character.toString(index);;
-                data[14] = keterangan;
-                tableModel.insertRow(0, data);
-                stt.close();
-                kon.close();
-                membersihkan_teks();
-                nonaktif_teks();
-                aktif_btn_default();
+                if(Integer.valueOf(txt_kehadiran.getText()) > 14) {
+                    JOptionPane.showMessageDialog(null, "Kehadiran melebihi Maksimal (Max. 14 Pertemuan)");
+                    txt_kehadiran.requestFocus();
+                } else {
+                    hitung_nilai();
+                    Class.forName(driver);
+                    Connection kon = DriverManager.getConnection(database,user,pass);
+                    Statement stt = kon.createStatement();
+                    String SQL = "INSERT INTO t_nilai(nim, kd_mk, kehadiran, tugas1, tugas2, tugas3, "
+                            + "uts, uas, nilai_absen, nilai_tugas, nilai_uts, nilai_uas, "
+                            + "nilai_akhir,t_nilai.index, ket, angkatan)\n" 
+                            + "VALUES "
+                            + "( '"+txt_nim.getText()+"',"
+                            + " '"+txt_kd_mk.getText()+"',"
+                            + " '"+txt_kehadiran.getText()+"',"
+                            + " '"+txt_tugas1.getText()+"',"
+                            + " '"+txt_tugas2.getText()+"',"
+                            + " '"+txt_tugas3.getText()+"',"
+                            + " '"+txt_uts.getText()+"',"
+                            + " '"+txt_uas.getText()+"',"
+                            + " '"+String.format("%.2f", n_absen)+"',"
+                            + " '"+String.format("%.2f", n_tugas)+"',"
+                            + " '"+String.format("%.2f", n_uts)+"',"
+                            + " '"+String.format("%.2f", n_uas)+"',"
+                            + " '"+String.format("%.2f", n_akhir)+"',"
+                            + " '"+index+"',"
+                            + " '"+keterangan+"',"
+                            + " '"+txt_angkatan.getYear()+"' )";
+                    stt.executeUpdate(SQL);
+                    data[0] = combo_nama.getSelectedItem().toString();
+                    data[1] = combo_mk.getSelectedItem().toString();
+                    data[2] = txt_kehadiran.getText();
+                    data[3] = txt_tugas1.getText();
+                    data[4] = txt_tugas2.getText();
+                    data[5] = txt_tugas3.getText();
+                    data[6] = txt_uts.getText();
+                    data[7] = txt_uas.getText();
+                    data[8] = String.format("%.2f", n_absen);
+                    data[9] = String.format("%.2f", n_tugas);
+                    data[10] = String.format("%.2f", n_uts);
+                    data[11] = String.format("%.2f", n_uas);
+                    data[12] = String.format("%.2f", n_akhir);
+                    data[13] = Character.toString(index);;
+                    data[14] = keterangan;
+                    tableModel.insertRow(0, data);
+                    stt.close();
+                    kon.close();
+                    membersihkan_teks();
+                    nonaktif_teks();
+                    aktif_btn_default();
+                    JOptionPane.showMessageDialog(null, "Data berhasil disimpan");
+                }
             }catch(Exception ex){    
                 JOptionPane.showMessageDialog(null, 
                         ex.getMessage(),"error",
