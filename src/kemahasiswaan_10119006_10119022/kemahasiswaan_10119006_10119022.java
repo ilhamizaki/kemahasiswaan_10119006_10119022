@@ -23,7 +23,7 @@ public class kemahasiswaan_10119006_10119022 {
         
 //        frm_utama utama = new frm_utama();
 //        utama.setVisible(true);
-        
+
     }
     
 }
