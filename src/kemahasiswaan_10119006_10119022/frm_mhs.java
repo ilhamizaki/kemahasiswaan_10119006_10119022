@@ -205,6 +205,7 @@ public class frm_mhs extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Aplikasi Kemahasiswaan_10119006_10119022");
+        setBackground(new java.awt.Color(255, 255, 255));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
@@ -245,7 +246,7 @@ public class frm_mhs extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBackground(new java.awt.Color(187, 221, 255));
 
         tabel_mahasiswa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -279,6 +280,7 @@ public class frm_mhs extends javax.swing.JFrame {
             }
         });
 
+        btn_tambah.setBackground(new java.awt.Color(255, 255, 255));
         btn_tambah.setText("Tambah");
         btn_tambah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -286,6 +288,7 @@ public class frm_mhs extends javax.swing.JFrame {
             }
         });
 
+        btn_ubah.setBackground(new java.awt.Color(255, 255, 255));
         btn_ubah.setText("Ubah");
         btn_ubah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -293,6 +296,7 @@ public class frm_mhs extends javax.swing.JFrame {
             }
         });
 
+        btn_hapus.setBackground(new java.awt.Color(255, 255, 255));
         btn_hapus.setText("Hapus");
         btn_hapus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -300,6 +304,7 @@ public class frm_mhs extends javax.swing.JFrame {
             }
         });
 
+        btn_simpan.setBackground(new java.awt.Color(255, 255, 255));
         btn_simpan.setText("Simpan");
         btn_simpan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -307,6 +312,7 @@ public class frm_mhs extends javax.swing.JFrame {
             }
         });
 
+        btn_batal.setBackground(new java.awt.Color(255, 255, 255));
         btn_batal.setText("Batal");
         btn_batal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -314,6 +320,7 @@ public class frm_mhs extends javax.swing.JFrame {
             }
         });
 
+        btn_keluar.setBackground(new java.awt.Color(255, 255, 255));
         btn_keluar.setText("Keluar");
         btn_keluar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -454,7 +461,7 @@ public class frm_mhs extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(0, 0, 0)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(1, 1, 1))
         );
